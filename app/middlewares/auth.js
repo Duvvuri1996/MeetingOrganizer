@@ -25,7 +25,11 @@ let isAuthorized = (req,res,next) => {
                         let apiResponse = response.generate(true, 'Verification error', 500, null)
                         res.send(apiResponse)
                     } else {
-                        req.user = {userId : decoded.data.userId}
+                        if(decoded.data.isAdmin === false){
+                        req.user = {userId : decoded.data.userId, uniqueUserName:decoded.data.uniqueUserName}
+                        } else {
+                            req.user = {userId : decoded.data.userId, uniqueUserName:decoded.data.uniqueUserName+'-admin'}
+                        }
                     }
                 }) //end verify authtoken
             }
