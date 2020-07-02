@@ -1,0 +1,39 @@
+const logger = require('pino')()
+const moment = require('moment')
+const { levels } = require('pino')
+
+//To Formatt the errors in a specified formatt in to our system
+
+let captureError = (errorMessage, errorOrigin, errorLevel) => {
+    let currentTime = moment()
+
+    let formattedError = {
+        timeStamp : currentTime,
+        errorMessage : errorMessage,
+        errorOrigin : errorOrigin,
+        errorLevel : errorLevel 
+    }
+    logger.error(formattedError)
+    return formattedError
+} //end captureError function
+
+let captureInfo = (message, origin, importance) => {
+    let currentTime = moment()
+    
+    let formattedInfo = {
+        timeStamp : currentTime,
+        message : message,
+        origin : origin,
+        level : importance
+    }
+    logger.info(formattedInfo)
+    return formattedInfo
+} //end captureInfo function
+
+/**
+ * exporting functionalities
+ */
+module.exports = {
+    captureError : captureError,
+    captureInfo : captureInfo
+}
