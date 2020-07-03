@@ -17,6 +17,10 @@ const User = new Schema ({
         type : String,
         default : ''
     },
+    country :{
+        type : String,
+        default : ''
+    },
     mobileNumber : {
         type : Number,
         default : 0
