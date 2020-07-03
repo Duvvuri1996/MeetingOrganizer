@@ -1,7 +1,9 @@
-const express = require('express')
-const shortid = require('shortid')
-const appConfig = require('../Configuration/appConfig')
-const Auth = require('../middlewares/auth')
+const express = require('express');
+const router = require.Router();
+const appConfig = require('../Configuration/appConfig');
+const Auth = require('../middlewares/auth');
+
+module.exports.setRouter = (app) => {
 
 let baseUrl = `${appConfig.apiVersion}/user`
 
@@ -30,4 +32,6 @@ app.get(`${baseUrl}/all/count`, Auth.isAuthorized, userController.getAllUsersCou
 app.get(`${baseUrl}/all/normal/count`, Auth.isAuthorized, userController.getAllNormalUsersCount)
 
 app.get(`${baseUrl}/all/admin/count`, Auth.isAuthorized, userController.getAllAdminUsersCount)
+
+}
 

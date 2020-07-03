@@ -26,6 +26,7 @@
     "moment": "^2.27.0",
     "moment-timezone": "^0.5.31",
     "mongoose": "^5.9.20",
+    "morgan": "^1.10.0",
     "pino": "^6.3.2",
     "shortid": "^2.2.15",
     "socket.io": "^2.3.0"
