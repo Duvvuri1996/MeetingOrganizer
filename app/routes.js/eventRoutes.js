@@ -14,7 +14,7 @@ module.exports.setRouter = (app) => {
 
     app.get(`${baseUrl}/count/all`, auth.isAuthorized, getCountOfAllEvents)
 
-    app.get(`${baseUrl}/count/:userId`, auth.isAuthorized, getAllEventCountOfSingleUser)
+    app.get(`${baseUrl}/count/:userId`, auth.isAuthorized, getAllEventsCountOfSingleUser)
 
     app.post(`${baseUrl}/create`, auth.isAuthorized, createEvent)
 
