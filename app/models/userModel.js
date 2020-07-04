@@ -41,6 +41,13 @@ const User = new Schema ({
         type : String,
         default : ''
     },
+    recoveryToken : {
+        type : String,
+        default : ''
+    },
+    recoveryTokenExpiration : {
+        type:Date
+    },
     createdOn : {
         type : Date,
         default : Date.now()

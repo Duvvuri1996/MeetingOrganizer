@@ -23,9 +23,9 @@ app.post(`${baseUrl}/logout`, auth.isAuthorized, userController.logoutFunction)
 
 app.post(`${baseUrl}/delete/:userId`, auth.isAuthorized, userController.deleteUserByUserId)
 
-app.post(`${baseUrl}/recoverymail/password`, auth.isAuthorized, userController.recoveryMail)
+app.post(`${baseUrl}/recoverymail`, userController.recoveryMail)
 
-app.post(`${baseUrl}/restpassword/:authToken`, auth.isAuthorized, userController.resetPassword)
+app.post(`${baseUrl}/resetpassword/:recoveryToken`, userController.resetPassword)
 
 app.get(`${baseUrl}/count/normal`, auth.isAuthorized, userController.getAllNormalUsersCount)
 

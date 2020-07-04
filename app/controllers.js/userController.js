@@ -1,7 +1,6 @@
-const express = require('express')
 const mongoose = require('mongoose')
 const shortid = require('shortid')
-
+const nodemailer = require('nodemailer')
 const authModel = mongoose.model('Auth')
 const userModel = mongoose.model('User')
 const check = require('../libs/checkLib')
@@ -11,7 +10,8 @@ const response = require('../libs/responseLib')
 const token = require('../libs/tokenLib')
 const passwordLib = require('../libs/passwordLib')
 const time = require('../libs/timLib')
-const tokenLib = require('../libs/tokenLib')
+const appConfig = require('../Configuration/appConfig')
+
 
 /**Get all users */
 let getAllUsers = (req, res) => {
@@ -43,7 +43,7 @@ let getAllNormalUsers = (req, res) => {
             let apiResponse = response.generate(true, "Failed to find normal user", 500, null)
             res.send(apiResponse)
         } else if (check.isEmpty(result)) {
-            logger.error('No user Found', 'getAllNormalUser', 10)
+            logger.error('No user Found', 'getAllNormalUsers', 10)
             let apiResponse = response.generate(true, "No user found", 404, null)
             res.send(apiResponse)
         } else {
@@ -65,7 +65,7 @@ let getAllAdminUsers = (req, res) => {
                 let apiResponse = response.generate(true, "Failed to find admin user", 500, null)
                 res.send(apiResponse)
             } else if (check.isEmpty(result)) {
-                logger.error('No user Found', 'getAllAdminUser', 10)
+                logger.error('No user Found', 'getAllAdminUsers', 10)
                 let apiResponse = response.generate(true, "No user found", 404, null)
                 res.send(apiResponse)
             } else {
@@ -289,8 +289,8 @@ let loginFunction = (req, res) => {
     let generateToken = (userDetails) => {
         console.log("Generate token is called")
         return new Promise((resolve, reject) => {
-            token.generateJwt(userDetails, (err,tokenDetails) => {
-                if(err) {
+            token.generateJwt(userDetails, (err, tokenDetails) => {
+                if (err) {
                     let apiResponse = response.generate(true, "Failed to generate token", 500, null)
                     reject(apiResponse)
                 } else {
@@ -304,28 +304,34 @@ let loginFunction = (req, res) => {
 
     let saveToken = (tokenDetails) => {
         console.log("SaveToken function is called")
-        return new Promise((resolve,reject) => {
-            authModel.findOne({userId : tokenDetails.userId}, (err,foundTokenDetails) => {
-                if(err) {
+        return new Promise((resolve, reject) => {
+            authModel.findOne({
+                userId: tokenDetails.userId
+            }, (err, foundTokenDetails) => {
+                if (err) {
                     let apiResponse = response.generate(true, "Failed to find userId", 500, null)
                     reject(apiResponse)
-                } else if(check.isEmpty(foundTokenDetails)) {
+                } else if (check.isEmpty(foundTokenDetails)) {
                     let newAuthToken = new authModel({
-                        userId : tokenDetails.userId,
-                        uniqueUserName : tokenDetails.uniqueUserName,
-                        authToken : tokenDetails.token,
-                        tokenSecret : tokenDetails.tokenSecret,
-                        tokenGenarationTime : time.now(),
-                        isAdmin : tokenDetails.isAdmin
+                        userId: tokenDetails.userId,
+                        authToken: tokenDetails.token,
+                        tokenSecret: tokenDetails.tokenSecret,
+                        tokenGenarationTime: time.now(),
+                        isAdmin: tokenDetails.isAdmin
                     })
-                    newAuthToken.save((err,newToken) => {
-                        if(err) {
+                    if (isAdmin === true) {
+                        newAuthToken.uniqueUserName = tokenDetails.uniqueUserName + '-admin'
+                    } else {
+                        newAuthToken.uniqueUserName = tokenDetails.uniqueUserName
+                    }
+                    newAuthToken.save((err, newToken) => {
+                        if (err) {
                             let apiResponse = response.generate(true, "Failed to create new token", 500, null)
                             reject(apiResponse)
-                        } else{
+                        } else {
                             let responseBody = {
-                                authToken : newToken.authToken,
-                                userDetails : tokenDetails.userDetails
+                                authToken: newToken.authToken,
+                                userDetails: tokenDetails.userDetails
                             }
                             resolve(responseBody)
                         }
@@ -333,20 +339,23 @@ let loginFunction = (req, res) => {
                 } else {
                     foundTokenDetails.authToken = tokenDetails.authToken
                     foundTokenDetails.userId = tokenDetails.userId
-                    foundTokenDetails.uniqueUserName = tokenDetails.uniqueUserName
-                    foundTokenDetails.authToken = tokenDetails.authToken
                     foundTokenDetails.tokenSecret = tokenDetails.tokenSecret
                     foundTokenDetails.tokenGenarationTime = tokenDetails.tokenGenarationTime
                     foundTokenDetails.isAdmin = tokenDetails.isAdmin
+                    if (isAdmin === true) {
+                        foundTokenDetails.uniqueUserName = tokenDetails.uniqueUserName + '-admin'
+                    } else {
+                        foundTokenDetails.uniqueUserName = tokenDetails.uniqueUserName
+                    }
 
-                    foundTokenDetails.save((err,newToken) => {
-                        if(err) {
+                    foundTokenDetails.save((err, newToken) => {
+                        if (err) {
                             let apiResponse = response.generate(true, "Failed to update newToken", 500, null)
                             reject(apiResponse)
-                        } else{
+                        } else {
                             let responseBody = {
-                                authToken : newToken.authToken,
-                                userDetails : tokenDetails.userDetails
+                                authToken: newToken.authToken,
+                                userDetails: tokenDetails.userDetails
                             }
                             resolve(responseBody)
                         }
@@ -356,19 +365,160 @@ let loginFunction = (req, res) => {
             })
         })
     } //end saveToken function
-    
-    findUser(req,res)
-    .then(validatePasswordInput)
-    .then(generateToken)
-    .then(saveToken)
-    .then((resolve) => {
-        let apiResponse = response.generate(false, "Login successfull", 200, resolve)
-        res.status(200)
-        res.send(apiResponse)
-    })
-    .catch((err) => {
-        console.log(err)
-        res.send(err.status)
-        res.send(err)
-    })
+
+    findUser(req, res)
+        .then(validatePasswordInput)
+        .then(generateToken)
+        .then(saveToken)
+        .then((resolve) => {
+            let apiResponse = response.generate(false, "Login successfull", 200, resolve)
+            res.status(200)
+            res.send(apiResponse)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.send(err.status)
+            res.send(err)
+        })
 } //end login function
+
+let logoutFunction = (req, res) => {
+    authModel.findOneAndRemove({
+        userid: req.user.userId
+    }, (err, result) => {
+        if (err) {
+            console.log(err)
+            logger.error(err.message, 'logoutFunction', 10)
+            let apiResponse = response.generate(true, `error occurred at: ${err.message}`, 500, null)
+            res.send(apiResponse)
+        } else if (check.isEmpty(result)) {
+            let apiResponse = response.generate(true, 'Logged Out or Invalid UserId', 404, null)
+            res.send(apiResponse)
+        } else {
+            let apiResponse = response.generate(false, 'Logged Out Successfully', 200, null)
+            res.send(apiResponse)
+        }
+    })
+} //end logout function
+
+let recoveryMail = (req, res) => {
+    let generateToken = () => {
+        return new Promise((resolve, reject) => {
+            userModel.findOne({
+                email: req.body.email
+            }, (err, userDetails) => {
+                if (err) {
+                    let apiResponse = response.generate(true, "User does not exists", 404, null)
+                    reject(apiResponse)
+                } else {
+                    userDetails.recoveryToken = shortid.generate()
+                    userDetails.recoveryTokenExpiration = Date.now() + 3600000
+                }
+                userDetails.save((err, user) => {
+                    if (err) {
+                        let apiResponse = response.generate(true, "Failed to save", 400, null)
+                        reject(apiResponse)
+                    } else {
+                        resolve(user)
+                    }
+
+                })
+            })
+        })
+    }
+
+    let sendMail = (userInfo) => {
+        return new Promise((resolve, reject) => {
+            let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: appConfig.mailer.auth.user,
+                    pass: appConfig.mailer.auth.pass
+                }
+            })
+            let mailOptions = {
+                from: appConfig.mailer.auth.user,
+                to: userInfo.email,
+                subject: 'Reset password',
+                html: 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
+                    'Please click on the following link to complete the process:\n\n' +
+                    "<a'http://localhost:3000/'+appConfig.apiVersion+'resetpassword/'+userInfo.recoveryToken></a>"
+            }
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    let apiResposne = response.generate(true, "Failed to send mail link", 500, null)
+                    reject(apiResposne)
+                } else {
+                    resolve(info)
+                }
+            })
+        })
+    }
+    generateToken(req, res)
+        .then(sendMail)
+        .then((resolve) => {
+            let apiResposne = response.generate(false, "Mail sent successfully to your email id", 200, null)
+            res.send(apiResposne)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.send(err)
+        })
+
+} //end recoveryMail function
+
+let resetPassword = (req, res) => {
+    let validateRecoveryToken = () => {
+        return new Promise((resolve, reject) => {
+            userModel.findOne({
+                recoveryToken: req.params.recoveryToken,
+                recoveryTokenDetails: {
+                    $gt: Date.now()
+                }
+            }, (err, user) => {
+                if (err) {
+                    let apiResponse = response.generate(true, "Token has expired or invalid")
+                    reject(apiResponse)
+                } else {
+                    user.password = passwordLib.hashPassword(req.body.password)
+                    user.recoveryToken = undefined
+                    user.recoveryTokenExpiration = undefined
+                }
+                user.save((err, details) => {
+                    if (err) {
+                        let apiResponse = response.generate(true, "Failed to save details...Unknwon error occured", 400, null)
+                        reject(apiResponse)
+                    } else {
+                        resolve(details)
+                    }
+                })
+            })
+
+        })
+    }
+    validateRecoveryToken(req, res)
+        .then((resolve) => {
+            let apiResponse = response.generate(false, "Password reset successful...please login to continue", 200, null)
+            res.send(apiResponse)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.send(err)
+        })
+} //end reset password function
+
+
+module.exports = {
+    getAllUsers: getAllUsers,
+    getAllNormalUsers: getAllNormalUsers,
+    getAllNormalUsersCount: getAllNormalUsersCount,
+    getAllAdminUsers: getAllAdminUsers,
+    getAllAdminUsersCount: getAllAdminUsersCount,
+    getUserByUserId: getUserByUserId,
+    deleteUserByUserId: deleteUserByUserId,
+    signUpFunction: signUpFunction,
+    loginFunction: loginFunction,
+    logoutFunction: logoutFunction,
+    recoveryMail : recoveryMail,
+    resetPassword : resetPassword
+}

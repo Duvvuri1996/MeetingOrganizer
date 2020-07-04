@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
@@ -10,6 +9,7 @@ const logger = require('./app/libs/logger');
 const routeLoggerMiddleware = require('./app/middlewares/reqLogger');
 const errorHandlerMiddleware = require('./app/middlewares/appErrorHandler');
 const morgan = require('morgan');
+const app = express();
 const {
     port
 } = require('./app/Configuration/appConfig');

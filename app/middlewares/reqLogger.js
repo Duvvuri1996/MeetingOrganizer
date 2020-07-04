@@ -33,5 +33,5 @@ let reqRouteIpLogger = (req,res,next) => {
 }// end request ip logger function  
 
 module.exports = {
-    logIp: requestIpLogger
+    logIp: reqRouteIpLogger
 }

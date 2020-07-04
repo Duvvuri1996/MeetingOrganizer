@@ -7,6 +7,12 @@ AppConfig.env = "dev"
 AppConfig.db = {
      uri : 'mongodb://127.0.0.1:27017/MeetingOrganizerDB'
 }
+mailer = {
+    auth: {
+      user: 'test@example.com',
+      pass: 'secret',
+    }
+}
 AppConfig.apiVersion = '/api/v1'
 
 /**
@@ -17,5 +23,6 @@ module.exports = {
     allowedCORSorigin : AppConfig.allowedCORSorigin,
     env : AppConfig.env,
     db : AppConfig.db,
-    apiVersion : AppConfig.apiVersion
+    apiVersion : AppConfig.apiVersion,
+    mailer : AppConfig.mailer
 }
