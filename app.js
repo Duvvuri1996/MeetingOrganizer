@@ -24,7 +24,7 @@ app.use(routeLoggerMiddleware.logIp);
 app.use(errorHandlerMiddleware.errorHandler);
 
 const modelsPath = './app/models'
-const routesPath = './app/routes'
+const routesPath = 'C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes'
 const middlewaresPath = './app/middlewares'
 
 app.all('*', function (req, res, next) {
