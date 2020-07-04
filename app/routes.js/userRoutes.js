@@ -15,13 +15,13 @@ app.get(`${baseUrl}/all/admin`, auth.isAuthorized, userController.getAllAdminUse
 
 app.get(`${baseUrl}/:userId`, auth.isAuthorized, userController.getUserByUserId)
 
-app.post(`${baseUrl}/signup`, auth.isAuthorized, userController.signUpFunction)
+app.post(`${baseUrl}/signup`, userController.signUpFunction)
 
-app.post(`${baseUrl}/login`, auth.isAuthorized, userController.loginFunction)
+app.post(`${baseUrl}/login`, userController.loginFunction)
 
 app.post(`${baseUrl}/logout`, auth.isAuthorized, userController.logoutFunction)
 
-app.post(`${baseUrl}/delete/:userId`, auth.isAuthorized, userController.deleteUser)
+app.post(`${baseUrl}/delete/:userId`, auth.isAuthorized, userController.deleteUserByUserId)
 
 app.post(`${baseUrl}/recoverymail/password`, auth.isAuthorized, userController.recoveryMail)
 

@@ -33,13 +33,13 @@ const User = new Schema ({
         type : String,
         default : ''
     },
-    uniqueUserName : {
-        type : String,
-        default : ''
-    },
     isAdmin : {
         type : Boolean,
         default:false
+    },
+    uniqueUserName : {
+        type : String,
+        default : ''
     },
     createdOn : {
         type : Date,
