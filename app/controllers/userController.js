@@ -3,7 +3,7 @@ const shortid = require('shortid')
 const nodemailer = require('nodemailer')
 const authModel = mongoose.model('Auth')
 const userModel = mongoose.model('User')
-c
+
 
 
 let getAllUsers = (req, res) => {

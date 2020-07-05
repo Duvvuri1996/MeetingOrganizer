@@ -97,8 +97,7 @@ function onListening() {
     let db = mongoose.connect(appConfig.db.uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true,
-        useMongoClient: true
+        useCreateIndex: true
     })
 }
 

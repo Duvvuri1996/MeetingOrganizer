@@ -12,7 +12,7 @@ const token = require('../libs/tokenLib')
 const passwordLib = require('../libs/passwordLib')
 const time = require('../libs/timLib')
 const appConfig = require('../Configuration/appConfig')
-const nodemailer = require('nodemailer')
+
 
 let getAllEvents = (req, res) => {
     eventModel.find()
