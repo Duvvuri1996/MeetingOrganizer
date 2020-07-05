@@ -34,6 +34,6 @@ let captureInfo = (message, origin, importance) => {
  * exporting functionalities
  */
 module.exports = {
-    captureError : captureError,
-    captureInfo : captureInfo
+    error : captureError,
+    info : captureInfo
 }

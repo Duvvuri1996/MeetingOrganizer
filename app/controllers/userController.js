@@ -3,15 +3,7 @@ const shortid = require('shortid')
 const nodemailer = require('nodemailer')
 const authModel = mongoose.model('Auth')
 const userModel = mongoose.model('User')
-const check = require('../libs/checkLib')
-const logger = require('../libs/logger')
-const validateInput = require('../libs/paramsValidationLib')
-const response = require('../libs/responseLib')
-const token = require('../libs/tokenLib')
-const passwordLib = require('../libs/passwordLib')
-const time = require('../libs/timLib')
-const appConfig = require('../Configuration/appConfig')
-
+c
 
 /**Get all users */
 let getAllUsers = (req, res) => {

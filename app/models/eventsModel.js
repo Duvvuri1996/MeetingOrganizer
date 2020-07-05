@@ -32,7 +32,10 @@ const Event = new Schema ({
     startTime : {
         hour:Number,
         minute:Number,
-        second:Number
+        second:{
+            type : Number,
+            default:00
+        }
     },
     endDate : {
         type : Date,
@@ -41,7 +44,10 @@ const Event = new Schema ({
     endTime : {
         hour:Number,
         minute:Number,
-        second:Number
+        second:{
+            type : Number,
+            default:00
+        }
     },
     color : {
         type : String,
@@ -53,6 +59,8 @@ const Event = new Schema ({
     },
     modifiedOn : {
         type : Date,
-        default : Date.now()
+        default : ""
     },
 })
+
+module.exports = mongoose.model('Event', Event)
