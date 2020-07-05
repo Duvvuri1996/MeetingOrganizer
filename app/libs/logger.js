@@ -17,14 +17,13 @@ let captureError = (errorMessage, errorOrigin, errorLevel) => {
     return formattedError
 } //end captureError function
 
-let captureInfo = (message, origin, importance) => {
+let captureInfo = (message, origin) => {
     let currentTime = moment()
     
     let formattedInfo = {
         timeStamp : currentTime,
         message : message,
         origin : origin,
-        level : importance
     }
     logger.info(formattedInfo)
     return formattedInfo

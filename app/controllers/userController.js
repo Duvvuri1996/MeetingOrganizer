@@ -5,7 +5,7 @@ const authModel = mongoose.model('Auth')
 const userModel = mongoose.model('User')
 c
 
-/**Get all users */
+
 let getAllUsers = (req, res) => {
     userModel.find()
         .select(' -_v -_id')
@@ -13,11 +13,11 @@ let getAllUsers = (req, res) => {
         .exec((err, result) => {
             if (err) {
                 logger.error(err.message, 'getAllUsers', 10)
-                let apiResponse = response.generate(true, "Failed to find user", 500, null)
+                let apiResponse = response.generate(true, "Failed to find user", 404, null)
                 res.send(apiResponse)
             } else if (check.isEmpty(result)) {
-                logger.error('No user Found', 'getAllUser', 10)
-                let apiResponse = response.generate(true, "No user found", 404, null)
+                logger.info('No user Found', 'getAllUser')
+                let apiResponse = response.generate(true, "No user found", 500, null)
                 res.send(apiResponse)
             } else {
                 let apiResponse = response.generate(false, "All user details found", 200, result)
@@ -32,18 +32,18 @@ let getAllNormalUsers = (req, res) => {
     }, (err, result) => {
         if (err) {
             logger.error(err.message, 'getAllNormalUsers', 10)
-            let apiResponse = response.generate(true, "Failed to find normal user", 500, null)
+            let apiResponse = response.generate(true, "Failed to find normal user", 404, null)
             res.send(apiResponse)
         } else if (check.isEmpty(result)) {
-            logger.error('No user Found', 'getAllNormalUsers', 10)
-            let apiResponse = response.generate(true, "No user found", 404, null)
+            logger.info('No user Found', 'getAllNormalUsers')
+            let apiResponse = response.generate(true, "No user found", 500, null)
             res.send(apiResponse)
         } else {
             let apiResponse = response.generate(false, "All normal user details found", 200, result)
             res.send(apiResponse)
         }
     })
-} //get all normal users
+} //end get all normal users
 
 let getAllAdminUsers = (req, res) => {
     userModel.find({
@@ -54,18 +54,18 @@ let getAllAdminUsers = (req, res) => {
         .exec((err, result) => {
             if (err) {
                 logger.error(err.message, 'getAllAdminUsers', 10)
-                let apiResponse = response.generate(true, "Failed to find admin user", 500, null)
+                let apiResponse = response.generate(true, "Failed to find admin user", 404, null)
                 res.send(apiResponse)
             } else if (check.isEmpty(result)) {
-                logger.error('No user Found', 'getAllAdminUsers', 10)
-                let apiResponse = response.generate(true, "No user found", 404, null)
+                logger.info('No user Found', 'getAllAdminUsers')
+                let apiResponse = response.generate(true, "No user found", 500, null)
                 res.send(apiResponse)
             } else {
                 let apiResponse = response.generate(false, "All admin user details found", 200, result)
                 res.send(apiResponse)
             }
         })
-} //get all admin users
+} //end get all admin users
 
 let getUserByUserId = (req, res) => {
     userModel.findOne({
@@ -76,11 +76,11 @@ let getUserByUserId = (req, res) => {
         .exec((err, result) => {
             if (err) {
                 logger.error(err.message, 'getUserByUserId', 10)
-                let apiResponse = response.generate(true, "Failed to find user", 500, null)
+                let apiResponse = response.generate(true, "Failed to find user", 404, null)
                 res.send(apiResponse)
             } else if (check.isEmpty(result)) {
-                logger.error('No user Found', 'getUserByuserId', 10)
-                let apiResponse = response.generate(true, "No user found", 404, null)
+                logger.info('No user Found', 'getUserByuserId')
+                let apiResponse = response.generate(true, "No user found", 500, null)
                 res.send(apiResponse)
             } else {
                 let apiResponse = response.generate(false, "User with specified userId found", 200, result)
@@ -96,18 +96,18 @@ let getAllNormalUsersCount = (req, res) => {
         .exec((err, result) => {
             if (err) {
                 logger.error(err.message, 'getAllNormalUsersCount', 10)
-                let apiResponse = response.generate(true, "Failed to retrieve normal users data", 500, null)
+                let apiResponse = response.generate(true, "Failed to retrieve normal users data", 404, null)
                 res.send(apiResponse)
             } else if (check.isEmpty(result)) {
-                logger.error('No normal user found', 'getAllNormalUsersCount', 10)
-                let apiResponse = response.generate(true, "No normal user found", 404, null)
+                logger.info('No normal user found', 'getAllNormalUsersCount')
+                let apiResponse = response.generate(true, "No normal user found", 500, null)
                 res.send(apiResponse)
             } else {
                 let apiResponse = response.generate(false, "Count retrieved of all normal users", 200, result)
                 res.send(apiResponse)
             }
         })
-} //end getAllNormalUsersCount
+} //end getAllNormalUsersCount function
 
 let getAllAdminUsersCount = (req, res) => {
     userModel.count({
@@ -116,18 +116,18 @@ let getAllAdminUsersCount = (req, res) => {
         .exec((err, result) => {
             if (err) {
                 logger.error(err.message, 'getAllAdminUsersCount', 10)
-                let apiResponse = response.generate(true, "Failed to retrieve admin users data", 500, null)
+                let apiResponse = response.generate(true, "Failed to retrieve admin users data", 404, null)
                 res.send(apiResponse)
             } else if (check.isEmpty(result)) {
-                logger.error('No admin user found', 'getAllAdminUsersCount', 10)
-                let apiResponse = response.generate(true, "No admin user found", 404, null)
+                logger.info('No admin user found', 'getAllAdminUsersCount')
+                let apiResponse = response.generate(true, "No admin user found", 500, null)
                 res.send(apiResponse)
             } else {
                 let apiResponse = response.generate(false, "Count retrieved of all admin users", 200, result)
                 res.send(apiResponse)
             }
         })
-} // end getAllAdminUsersCount
+} // end getAllAdminUsersCount function
 
 let deleteUserByUserId = (req, res) => {
     userModel.findOneAndRemove({
@@ -136,18 +136,18 @@ let deleteUserByUserId = (req, res) => {
         .exec((err, result) => {
             if (err) {
                 logger.error(err.message, 'deleteUserByUserId', 10)
-                let apiResponse = response.generate(true, "Failed to delete user", 500, null)
+                let apiResponse = response.generate(true, "Failed to delete user", 404, null)
                 res.send(apiResponse)
             } else if (check.isEmpty(result)) {
-                logger.error('No user found', 'deleteUserByUserId', 10)
-                let apiResponse = response.generate(true, "No user found", 404, null)
+                logger.info('No user found', 'deleteUserByUserId')
+                let apiResponse = response.generate(true, "No user found", 500, null)
                 res.send(apiResponse)
             } else {
                 let apiResponse = response.generate(false, "Successfully deleted user", 200, result)
                 res.send(apiResponse)
             }
         })
-} //end deleteUserByUserId
+} //end deleteUserByUserId function
 
 let signUpFunction = (req, res) => {
     let validateParams = () => {
@@ -168,7 +168,7 @@ let signUpFunction = (req, res) => {
             }
 
         })
-    } //end validate user detalis
+    } //end validate user detalis function
 
     let createUser = () => {
         return new Promise((resolve, reject) => {
@@ -213,7 +213,7 @@ let signUpFunction = (req, res) => {
                     }
                 })
         })
-    } //end create user
+    } //end create user function
     validateParams(req, res)
         .then(createUser)
         .then((resolve) => {
@@ -254,7 +254,7 @@ let loginFunction = (req, res) => {
             }
 
         })
-    } //end findUser
+    } //end findUser function
 
     let validatePasswordInput = (userDetails) => {
         return new Promise((resolve, reject) => {
@@ -276,7 +276,7 @@ let loginFunction = (req, res) => {
                 }
             })
         })
-    } //end validatePasswordInput
+    } //end validatePasswordInput function
 
     let generateToken = (userDetails) => {
         console.log("Generate token is called")
@@ -417,7 +417,7 @@ let recoveryMail = (req, res) => {
                 })
             })
         })
-    }
+    }//end generateToken function
 
     let sendMail = (userInfo) => {
         return new Promise((resolve, reject) => {
@@ -445,7 +445,7 @@ let recoveryMail = (req, res) => {
                 }
             })
         })
-    }
+    }//end senEmail function
     generateToken(req, res)
         .then(sendMail)
         .then((resolve) => {
