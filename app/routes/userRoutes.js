@@ -8,6 +8,9 @@ module.exports.setRouter = (app) => {
     let baseUrl = `${appConfig.apiVersion}/user`
 
     app.get(`${baseUrl}/all`, auth.isAuthorized, userController.getAllUsers)
+    
+    
+    
     /**
 	 * @api {get} /api/v1/user/all Get all users
 	 * @apiVersion 0.0.1
@@ -47,7 +50,12 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
     app.get(`${baseUrl}/all/normal`, auth.isAuthorized, userController.getAllNormalUsers)
+    
+    
+    
     /**
 	 * @api {get} /api/v1/user/all/normal Get all Normal users
 	 * @apiVersion 0.0.1
@@ -89,6 +97,10 @@ module.exports.setRouter = (app) => {
 
 
     app.get(`${baseUrl}/all/admin`, auth.isAuthorized, userController.getAllAdminUsers)
+    
+    
+    
+    
     /**
 	 * @api {get} /api/v1/user/all/admin Get all Admin users
 	 * @apiVersion 0.0.1
@@ -129,7 +141,13 @@ module.exports.setRouter = (app) => {
 	 */
 
 
+
+
     app.get(`${baseUrl}/:userId`, auth.isAuthorized, userController.getUserByUserId)
+    
+    
+    
+    
     /**
 	 * @api {get} /api/v1/user/:userId Get a single user by userId
 	 * @apiVersion 0.0.1
@@ -170,6 +188,10 @@ module.exports.setRouter = (app) => {
 
 
     app.post(`${baseUrl}/signup`, userController.signUpFunction)
+    
+    
+    
+    
     /**
 	 * @api {post} /api/v1/user/signup Singnup user
 	 * @apiVersion 0.0.1
@@ -217,7 +239,13 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
     app.post(`${baseUrl}/login`, userController.loginFunction)
+    
+    
+    
+    
     /**
 	 * @api {post} /api/v1/user/login Login user
 	 * @apiVersion 0.0.1
@@ -259,7 +287,13 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
     app.post(`${baseUrl}/logout`, auth.isAuthorized, userController.logoutFunction)
+    
+    
+    
+    
     /**
 	 * @api {post} /api/v1/user/logout Logout user
 	 * @apiVersion 0.0.1
@@ -286,7 +320,13 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
     app.post(`${baseUrl}/:userId/delete`, auth.isAuthorized, userController.deleteUserByUserId)
+    
+    
+    
+    
     /**
 	 * @api {post} /api/v1/user/:userId/delete Delete user
 	 * @apiVersion 0.0.1
@@ -313,7 +353,12 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+     
     app.post(`${baseUrl}/recoverymail`, userController.recoveryMail)
+    
+    
+    
     /**
 	 * @api {post} /api/v1/user/recoverymail Recoverymail to reset password
 	 * @apiVersion 0.0.1
@@ -340,7 +385,12 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
     app.post(`${baseUrl}/resetpassword/:recoveryToken`, userController.resetPassword)
+    
+    
+    
     /**
 	 * @api {post} /api/v1/user/resetpassword/:recoveryToken Reset password
 	 * @apiVersion 0.0.1
@@ -368,7 +418,12 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
     app.get(`${baseUrl}/count/normal`, auth.isAuthorized, userController.getAllNormalUsersCount)
+    
+    
+    
     /**
 	 * @api {get} /api/v1/user/count/normal Get count of all Normal users
 	 * @apiVersion 0.0.1
@@ -394,7 +449,13 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
     app.get(`${baseUrl}count/admin`, auth.isAuthorized, userController.getAllAdminUsersCount)
+    
+    
+    
+    
     /**
 	 * @api {get} /api/v1/user/count/admin Get count of all Admin users
 	 * @apiVersion 0.0.1

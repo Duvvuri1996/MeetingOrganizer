@@ -8,6 +8,9 @@ module.exports.setRouter = (app) => {
     let baseUrl = `${appConfig.apiVersion}/events`
 
 	app.get(`${baseUrl}/all`, auth.isAuthorized, eventController.getAllEvents)
+
+
+
 	/**
 	 * @api {get} /api/v1/events/all Get all events
 	 * @apiVersion 0.0.1
@@ -53,9 +56,14 @@ module.exports.setRouter = (app) => {
 	    "status": 404/500,
 	    "data": null
 	   }
-	 */
+	*/
+
+
 
 	app.get(`${baseUrl}/all/:userId`, auth.isAuthorized, eventController.getAllEventsOfSingleUser)
+
+
+
 	/**
 	 * @api {get} /api/v1/events/all/:userId Get all events of a single user
 	 * @apiVersion 0.0.1
@@ -104,7 +112,13 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
+
 	app.get(`${baseUrl}/:eventId`, auth.isAuthorized, eventController.getSingleEventByEventId)
+
+
+
 	/**
 	 * @api {get} /api/v1/events/:eventId Get all events of a single user
 	 * @apiVersion 0.0.1
@@ -153,7 +167,12 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
 	app.get(`${baseUrl}/count/all`, auth.isAuthorized, eventController.getCountOfAllEvents)
+	
+	
+	
 	/**
 	 * @api {get} /api/v1/events/count/all Get count of all events
 	 * @apiVersion 0.0.1
@@ -179,7 +198,11 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
 	app.get(`${baseUrl}/count/:userId`, auth.isAuthorized, eventController.getAllEventsCountOfSingleUser)
+	
+	
+	
 	/**
 	 * @api {get} /api/v1/events/count/:userId Get count of all events of single user
 	 * @apiVersion 0.0.1
@@ -206,7 +229,12 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
 	app.post(`${baseUrl}/create`, auth.isAuthorized, eventController.createEvent)
+	
+	
+	
 	/**
 	 * @api {get} /api/v1/events/create Create an event
 	 * @apiVersion 0.0.1
@@ -260,7 +288,11 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+	 
 	app.post(`${baseUrl}/:eventId/delete`, auth.isAuthorized, eventController.deleteEventByEventId)
+	
+	
+	
 	/**
 	 * @api {post} /api/v1/events/:eventId/delete Delete event
 	 * @apiVersion 0.0.1
@@ -287,7 +319,14 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+
+
+
 	app.put(`${baseUrl}/:eventId/edit`, auth.isAuthorized, eventController.editEventByEventId)
+	
+	
+	
+	
 	/**
 	 * @api {post} /api/v1/events/:eventID/edit Edit an event
 	 * @apiVersion 0.0.1
@@ -335,5 +374,7 @@ module.exports.setRouter = (app) => {
 	    "data": null
 	   }
 	 */
+
+	 
 
 }
