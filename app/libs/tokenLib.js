@@ -12,7 +12,7 @@ let generateJwt = (data,cb) => {
          * Dat.now() returns the number of milliseconds elapsed since January 1, 1970, 00:00:00 UTC
          * and converting to seconds by dividing with 1000 and adding 86400 secs = 24hrs giving expiration after one day
          */
-        exp : Math.floor(Dat.now()/1000)+(60*60*24),
+        exp : Math.floor(Date.now()/1000)+(60*60*24),
         //issuer
         iss : 'Dsplanner',
         sub : 'authToken',

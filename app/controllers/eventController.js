@@ -16,19 +16,19 @@ const appConfig = require('../Configuration/appConfig')
 
 let getAllEvents = (req, res) => {
     eventModel.find()
-        .select(-id - _v)
+        .select('-_id -__v')
         .lean()
-        .exec((err, result) => {
+        .exec((err, eventDetails) => {
             if (err) {
                 logger.error(err.message, "getAllEvents function", 10)
                 let apiResponse = response.generate(true, "Failed to retrieve data", 404, null)
                 res.send(apiResponse)
-            } else if (check.isEmpty(result)) {
+            } else if (check.isEmpty(eventDetails)) {
                 logger.info("No events found", "getAllEvents function")
                 let apiResponse = response.generate(true, "No events found", 500, null)
                 res.send(apiResponse)
             } else {
-                let apiResponse = (false, "Events found", 200, result)
+                let apiResponse = response.generate(false, "Events found", 200, eventDetails)
                 res.send(apiResponse)
             }
         })
@@ -42,7 +42,7 @@ let getCountOfAllEvents = (req, res) => {
                 let apiResponse = response.generate(true, "Failed to retrieve data", 404, null)
                 res.send(apiResponse)
             } else {
-                let apiResponse = (false, " Count retireved", 200, count)
+                let apiResponse = response.generate(false," Count retireved", 200, count)
                 res.send(apiResponse)
             }
         })
@@ -61,7 +61,7 @@ let getSingleEventByEventId = (req, res) => {
             let apiResponse = response.generate(true, "Event not found for the given eventid", 500, null)
             res.send(apiResponse)
         } else {
-            let apiResponse = (false, " Event found", 200, eventDetails)
+            let apiResponse = response.generate(false, " Event found", 200, eventDetails)
             res.send(apiResponse)
         }
     })
@@ -81,7 +81,7 @@ let getAllEventsOfSingleUser = (req, res) => {
                 let apiResponse = response.generate(true, "No events found for the given user", 500, null)
                 res.send(apiResponse)
             } else {
-                let apiResponse = (false, " Events found", 200, userEventDetails)
+                let apiResponse = response.generate(false, " Events found", 200, userEventDetails)
                 res.send(apiResponse)
             }
         })
@@ -119,13 +119,13 @@ let createEvent = (req, res) => {
         startTime: {
             hour: (req.body.endTime).slice(0, 2),
             minute: (req.body.endTime).slice(3, 5),
-            second: (req.body.endTime).slice(6)
+            second: (req.body.endTime).slice(6,8)
         },
         endDate: req.body.endDate,
         endTime: {
             hour: (req.body.endTime).slice(0, 2),
             minute: (req.body.endTime).slice(3, 5),
-            second: (req.body.endTime).slice(6)
+            second: (req.body.endTime).slice(6,8)
         },
         createdOn: today,
         color : req.body.color

@@ -23,9 +23,9 @@ app.use(cookieParser());
 app.use(routeLoggerMiddleware.logIp);
 app.use(errorHandlerMiddleware.errorHandler);
 
-const modelsPath = './app/models'
+const modelsPath = 'C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/models'
 const routesPath = 'C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes'
-const middlewaresPath = './app/middlewares'
+
 
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")

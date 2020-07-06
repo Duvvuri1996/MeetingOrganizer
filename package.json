@@ -4,7 +4,8 @@
   "description": "To organize events",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "apidoc -i C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/ -o apidoc/"
   },
   "repository": {
     "type": "git",

@@ -7,9 +7,9 @@ AppConfig.env = "dev"
 AppConfig.db = {
      uri : 'mongodb://127.0.0.1:27017/MeetingOrganizerDB'
 }
-mailer = {
+AppConfig.mailer = {
     auth: {
-      user: 'test@example.com',
+      user: 'test@gmail.com',
       pass: 'secret',
     }
 }

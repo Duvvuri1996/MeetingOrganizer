@@ -7,10 +7,11 @@ const logger = require('./logger')
 let hashPassword = (userPassword) => {
     let salt = bcrypt.genSaltSync(saltRounds)
     let hash = bcrypt.hashSync(userPassword,salt)
+    return hash
 }
 
-let comparePassword = (userPassword, hashPassword, cb) => {
-    bcrypt.compare(userPassword, hashPassword, (err,res) => {
+let comparePassword = (oldPassword, hashPassword, cb) => {
+    bcrypt.compare(oldPassword, hashPassword, (err,res) => {
     if(err) {
         logger.error(err.password, 'Comparison error', 5)
         cb(err,null)

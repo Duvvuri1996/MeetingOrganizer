@@ -3,12 +3,18 @@ const shortid = require('shortid')
 const nodemailer = require('nodemailer')
 const authModel = mongoose.model('Auth')
 const userModel = mongoose.model('User')
-
-
+const validateInput = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/paramsValidationLib')
+const check = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/checkLib')
+const passwordLib = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/passwordLib')
+const time = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/timLib')
+const response = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/responseLib')
+const logger = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/logger')
+const token = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/tokenLib')
+const appConfig = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/Configuration/appConfig')
 
 let getAllUsers = (req, res) => {
     userModel.find()
-        .select(' -_v -_id')
+        .select(' -__v -_id -password')
         .lean()
         .exec((err, result) => {
             if (err) {
@@ -143,7 +149,7 @@ let deleteUserByUserId = (req, res) => {
                 let apiResponse = response.generate(true, "No user found", 500, null)
                 res.send(apiResponse)
             } else {
-                let apiResponse = response.generate(false, "Successfully deleted user", 200, result)
+                let apiResponse = response.generate(false, "Successfully deleted user", 200, null)
                 res.send(apiResponse)
             }
         })
@@ -196,6 +202,11 @@ let signUpFunction = (req, res) => {
                             uniqueUserName: req.body.uniqueUserName,
                             createdOn: time.now()
                         })
+                        if(newUser.isAdmin === true){
+                            newUser.uniqueUserName = req.body.uniqueUserName+'-admin'
+                        } else {
+                            newUser.uniqueUserName = req.body.uniqueUserName
+                        }
 
                         newUser.save((err, newUser) => {
                             if (err) {
@@ -206,6 +217,7 @@ let signUpFunction = (req, res) => {
                             } else {
                                 let newUserObj = newUser.toObject();
                                 resolve(newUserObj)
+                                console.log(newUserObj.password +'is called and displayed')
                             }
                         })
                     } else {
@@ -218,8 +230,7 @@ let signUpFunction = (req, res) => {
     } //end create user function
     validateParams(req, res)
         .then(createUser)
-        .then((resolve) => {
-            delete resolve.password
+        .then((resolve) => {            
             let apiResponse = response.generate(false, 'User created successfully', 200, resolve)
             res.send(apiResponse)
         })
@@ -247,6 +258,7 @@ let loginFunction = (req, res) => {
                             let apiResponse = response.generate(true, "No user Found", 404, null)
                             reject(apiResponse)
                         } else {
+                            logger.info('User Found', 'userController: findUser()')
                             resolve(userDetails)
                         }
                     })
@@ -258,14 +270,17 @@ let loginFunction = (req, res) => {
         })
     } //end findUser function
 
-    let validatePasswordInput = (userDetails) => {
+    let validatePasswordInput = (retrievedUserDetails) => {
+        console.log(retrievedUserDetails+'retrievedUserDetails is called')
+        console.log(req.body.password + 'is called')
+        console.log("validatePasswordInput is called")
         return new Promise((resolve, reject) => {
-            passwordLib.comparePassword(req.body.password, userDetails.password, (err, isMatch) => {
+            passwordLib.comparePassword(req.body.password, retrievedUserDetails.password, (err, isMatch) => {
                 if (err) {
                     let apiResponse = response.generate(true, "Login failed", 500, null)
                     reject(apiResponse)
                 } else if (isMatch) {
-                    let userDetails = userDetails.toObject()
+                    let userDetails = retrievedUserDetails.toObject()
                     delete userDetails.password
                     delete userDetails._id
                     delete userDetails._v
@@ -273,6 +288,7 @@ let loginFunction = (req, res) => {
                     delete userDetails.modifiedOn
                     resolve(userDetails)
                 } else {
+                    logger.info('Login Failed Due To Invalid Password', 'userController: validatePasswordInput')
                     let apiResponse = response.generate(true, "Invalid login password", 400, null)
                     reject(apiResponse)
                 }
@@ -285,9 +301,11 @@ let loginFunction = (req, res) => {
         return new Promise((resolve, reject) => {
             token.generateJwt(userDetails, (err, tokenDetails) => {
                 if (err) {
+                    logger.error("Failed to generate token", "generateToken()", 10)
                     let apiResponse = response.generate(true, "Failed to generate token", 500, null)
                     reject(apiResponse)
                 } else {
+                    logger.info("Successfull", "generateToken()")
                     tokenDetails.userId = userDetails.userId;
                     tokenDetails.userDetails = userDetails;
                     resolve(tokenDetails)
@@ -313,11 +331,6 @@ let loginFunction = (req, res) => {
                         tokenGenarationTime: time.now(),
                         isAdmin: tokenDetails.isAdmin
                     })
-                    if (isAdmin === true) {
-                        newAuthToken.uniqueUserName = tokenDetails.uniqueUserName + '-admin'
-                    } else {
-                        newAuthToken.uniqueUserName = tokenDetails.uniqueUserName
-                    }
                     newAuthToken.save((err, newToken) => {
                         if (err) {
                             let apiResponse = response.generate(true, "Failed to create new token", 500, null)
@@ -325,22 +338,19 @@ let loginFunction = (req, res) => {
                         } else {
                             let responseBody = {
                                 authToken: newToken.authToken,
-                                userDetails: tokenDetails.userDetails
+                                userDetails: tokenDetails.userDetails,
+                                
                             }
+                            
                             resolve(responseBody)
                         }
                     })
                 } else {
-                    foundTokenDetails.authToken = tokenDetails.authToken
+                    foundTokenDetails.authToken = tokenDetails.token
                     foundTokenDetails.userId = tokenDetails.userId
                     foundTokenDetails.tokenSecret = tokenDetails.tokenSecret
                     foundTokenDetails.tokenGenarationTime = tokenDetails.tokenGenarationTime
                     foundTokenDetails.isAdmin = tokenDetails.isAdmin
-                    if (isAdmin === true) {
-                        foundTokenDetails.uniqueUserName = tokenDetails.uniqueUserName + '-admin'
-                    } else {
-                        foundTokenDetails.uniqueUserName = tokenDetails.uniqueUserName
-                    }
 
                     foundTokenDetails.save((err, newToken) => {
                         if (err) {
@@ -349,7 +359,8 @@ let loginFunction = (req, res) => {
                         } else {
                             let responseBody = {
                                 authToken: newToken.authToken,
-                                userDetails: tokenDetails.userDetails
+                                userDetails: tokenDetails.userDetails,
+                                
                             }
                             resolve(responseBody)
                         }
@@ -370,15 +381,15 @@ let loginFunction = (req, res) => {
             res.send(apiResponse)
         })
         .catch((err) => {
-            console.log(err)
-            res.send(err.status)
+            console.log(err+'is called')
+            res.sendStatus(err.status)
             res.send(err)
         })
 } //end login function
 
 let logoutFunction = (req, res) => {
     authModel.findOneAndRemove({
-        userid: req.user.userId
+        userId: req.user.userId
     }, (err, result) => {
         if (err) {
             console.log(err)
@@ -423,9 +434,10 @@ let recoveryMail = (req, res) => {
     }//end generateToken function
 
     let sendMail = (userInfo) => {
+        console.log(userInfo)
         return new Promise((resolve, reject) => {
             let transporter = nodemailer.createTransport({
-                service: 'gmail',
+                service: 'Gmail',
                 auth: {
                     user: appConfig.mailer.auth.user,
                     pass: appConfig.mailer.auth.pass
@@ -439,8 +451,10 @@ let recoveryMail = (req, res) => {
                     'Please click on the following link to complete the process:\n\n' +
                     "<a'http://localhost:3000/'+appConfig.apiVersion+'resetpassword/'+userInfo.recoveryToken></a>"
             }
+            console.log(mailOptions)
             transporter.sendMail(mailOptions, (err, info) => {
                 if (err) {
+                    console.log(err.message)
                     let apiResposne = response.generate(true, "Failed to send mail link", 500, null)
                     reject(apiResposne)
                 } else {

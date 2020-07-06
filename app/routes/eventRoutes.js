@@ -7,343 +7,330 @@ module.exports.setRouter = (app) => {
 
     let baseUrl = `${appConfig.apiVersion}/events`
 
-    app.get(`${baseUrl}/all`, auth.isAuthorized, eventController.getAllEvents)
-
-    /**
+	app.get(`${baseUrl}/all`, auth.isAuthorized, eventController.getAllEvents)
+	/**
 	 * @api {get} /api/v1/events/all Get all events
 	 * @apiVersion 0.0.1
-	 * @apiGroup read
+	 * 
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 *
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
-	    "message": "All Event Details Found",
+	    "message": "All Events Details Found",
 	    "status": 200,
 	    "data": [
 					{
 						eventId: "string",
-						eventTitle: "string",
-						creatorName: "string",
-						creatorId: "string",
-						userId: "string",
-						startDate: "Date",
-						startTime: {
-                            hour:"number",
-                            minute:"number",
-                            second:"number"
-                        },
-                        endDate: "Date",
+                        eventTitle: "string",
+                        userId: "string",
+                        startDate : "Date",
+                        startTime: {
+                                    hour:"number",
+                                    minute:"number",
+                                    second:"number"
+                                },
+                        endDate: : "Date",
                         endTime: {
-                            hour:"number",
-                            minute:"number",
-                            second:"number"
-                        },
-						color : "string",
-						createdOn: "date",
-						modifiedOn: "date"
+                                    hour:"number",
+                                    minute:"number",
+                                    second:"number"
+                                },
+                        color : boolean,
+                        createdOn:  : "Date",
+                        modifiedOn : "Date"
 					}
 	    		]
-	    	
-		
+	    	}
+		}
 	}
 	  @apiErrorExample {json} Error-Response:
 	 *
 	 * {
 	    "error": true,
-	    "message": "Failed To Find event Details",
+	    "message": "Failed To Find Event Details",
 	    "status": 404/500,
 	    "data": null
 	   }
 	 */
 
-    app.get(`${baseUrl}/all/:userId`, auth.isAuthorized, eventController.getAllEventsOfSingleUser)
-
-    /**
-	 * @api {get} /api/v1/events/all/:userId Get all events of single user
+	app.get(`${baseUrl}/all/:userId`, auth.isAuthorized, eventController.getAllEventsOfSingleUser)
+	/**
+	 * @api {get} /api/v1/events/all/:userId Get all events of a single user
 	 * @apiVersion 0.0.1
-	 * @apiGroup read
+	 * 
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} userId userId of user as parameter
-     * 
+	 * 
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
-	    "message": "All Event Details of a single user Found",
+	    "message": "All Events Details of a single user Found",
 	    "status": 200,
 	    "data": [
 					{
 						eventId: "string",
-						eventTitle: "string",
-						creatorName: "string",
-						creatorId: "string",
-						userId: "string",
-						startDate: "Date",
-						startTime: {
-                            hour:"number",
-                            minute:"number",
-                            second:"number"
-                        },
-                        endDate: "Date",
+                        eventTitle: "string",
+                        userId: "string",
+                        startDate : "Date",
+                        startTime: {
+                                    hour:"number",
+                                    minute:"number",
+                                    second:"number"
+                                },
+                        endDate: : "Date",
                         endTime: {
-                            hour:"number",
-                            minute:"number",
-                            second:"number"
-                        },
-						color : "string",
-						createdOn: "date",
-						modifiedOn: "date"
+                                    hour:"number",
+                                    minute:"number",
+                                    second:"number"
+                                },
+                        color : boolean,
+                        createdOn:  : "Date",
+                        modifiedOn : "Date"
 					}
 	    		]
-	    	
-		
+	    	}
+		}
 	}
 	  @apiErrorExample {json} Error-Response:
 	 *
 	 * {
 	    "error": true,
-	    "message": "Failed To Find event Details of a single user",
+	    "message": "Failed To Find Event Details of user",
 	    "status": 404/500,
 	    "data": null
 	   }
 	 */
 
-    app.get(`${baseUrl}/:eventId`, auth.isAuthorized, eventController.getSingleEventByEventId)
-
-/**
-	 * @api {get} /api/v1/events/:eventId Get single event by eventId
+	app.get(`${baseUrl}/:eventId`, auth.isAuthorized, eventController.getSingleEventByEventId)
+	/**
+	 * @api {get} /api/v1/events/:eventId Get all events of a single user
 	 * @apiVersion 0.0.1
-	 * @apiGroup read
+	 * 
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
-	 * @apiParam {String} eventId eventId of event as parameter
-     * 
+	 * @apiParam {String} eventId eventId of user as parameter
+	 * 
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
-	    "message": "Event Details Found",
+	    "message": "Event Details",
 	    "status": 200,
 	    "data": [
 					{
 						eventId: "string",
-						eventTitle: "string",
-						creatorName: "string",
-						creatorId: "string",
-						userId: "string",
-						startDate: "Date",
-						startTime: {
-                            hour:"number",
-                            minute:"number",
-                            second:"number"
-                        },
-                        endDate: "Date",
+                        eventTitle: "string",
+                        userId: "string",
+                        startDate : "Date",
+                        startTime: {
+                                    hour:"number",
+                                    minute:"number",
+                                    second:"number"
+                                },
+                        endDate: : "Date",
                         endTime: {
-                            hour:"number",
-                            minute:"number",
-                            second:"number"
-                        },
-						color : "string",
-						createdOn: "date",
-						modifiedOn: "date"
+                                    hour:"number",
+                                    minute:"number",
+                                    second:"number"
+                                },
+                        color : boolean,
+                        createdOn:  : "Date",
+                        modifiedOn : "Date"
 					}
 	    		]
-	    	
-		
+	    	}
+		}
 	}
 	  @apiErrorExample {json} Error-Response:
 	 *
 	 * {
 	    "error": true,
-	    "message": "Failed To Find event Details",
+	    "message": "Failed To Find Event Details",
 	    "status": 404/500,
 	    "data": null
 	   }
 	 */
 
-    app.get(`${baseUrl}/count/all`, auth.isAuthorized, eventController.getCountOfAllEvents)
-
-/**
-	 * @api {get} /api/v1/events/count/all Get single event by eventId
+	app.get(`${baseUrl}/count/all`, auth.isAuthorized, eventController.getCountOfAllEvents)
+	/**
+	 * @api {get} /api/v1/events/count/all Get count of all events
 	 * @apiVersion 0.0.1
-	 * @apiGroup read
+	 * 
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
-     * 
+	 *
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
 	    "message": "Count retrieved",
 	    "status": 200,
-		"data": "number"
-	 }
-
-	 * @apiErrorExample {json} Error-Response:
+	    "data": "Number"	    	}
+		}
+	}
+	  @apiErrorExample {json} Error-Response:
+	 *
 	 * {
 	    "error": true,
-	    "message": "Failed To count all event Details",
+	    "message": "Failed to get count",
 	    "status": 404/500,
 	    "data": null
 	   }
 	 */
 
-    app.get(`${baseUrl}/count/:userId`, auth.isAuthorized, eventController.getAllEventsCountOfSingleUser)
-
-/**
-	 * @api {get} /api/v1/events/count/:userId Get single event by eventId
+	app.get(`${baseUrl}/count/:userId`, auth.isAuthorized, eventController.getAllEventsCountOfSingleUser)
+	/**
+	 * @api {get} /api/v1/events/count/:userId Get count of all events of single user
 	 * @apiVersion 0.0.1
-	 * @apiGroup read
+	 * 
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
-     * @apiParam {String} userId userId of a user as parameter
-     * 
+	 * @apiParam {String} userId userId of a user as parameter
+	 * 
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
 	    "message": "Count retrieved",
 	    "status": 200,
-		"data": "number"
-	 }
-	 * @apiErrorExample {json} Error-Response:
-	
+	    "data": "Number"	    	}
+		}
+	}
+	  @apiErrorExample {json} Error-Response:
+	 *
 	 * {
 	    "error": true,
-	    "message": "Failed To count all event Details of a single user",
+	    "message": "Failed to get count",
 	    "status": 404/500,
 	    "data": null
 	   }
 	 */
 
-    app.post(`${baseUrl}/create`, auth.isAuthorized, eventController.createEvent)
-
-/**
-	 * @api {post} /api/v1/events/create Create event
+	app.post(`${baseUrl}/create`, auth.isAuthorized, eventController.createEvent)
+	/**
+	 * @api {get} /api/v1/events/create Create an event
 	 * @apiVersion 0.0.1
-	 * @apiGroup create
-	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} eventTitle eventTitle of the event passed as a body parameter
 	 * @apiParam {String} userId userId of the event passed as a body parameter
 	 * @apiParam {Date} startDate startDate of the event passed as a body parameter
 	 * @apiParam {Object} startTime startTime of the event passed as a body parameter
-     * @apiParam {Date} endDate endDate of the event passed as a body parameter
+	 * @apiParam {Date} endDate endDate of the event passed as a body parameter
 	 * @apiParam {Object} endTime endTime of the event passed as a body parameter
 	 * @apiParam {String} color color code in hexadecimal form(#000000) as body parameter
-     * 
+	 * 
+	 * 
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
-	    "message": "Event Created successfully",
+	    "message": "Event created successfully",
 	    "status": 200,
 	    "data": [
 					{
 						eventId: "string",
-						eventTitle: "string",
-						userId: "string",
-						startDate: "Date",
-						startTime: {
-                            hour:"number",
-                            minute:"number",
-                            second:"number"
-                        },
-						endDate: "Date",
-						endTime: {
-                            hour:"number",
-                            minute:"number",
-                            second:"number"
-                        },
-                        createdOn: "date",
-                        color : "string"
+                        eventTitle: "string",
+                        userId: "string",
+                        startDate : "Date",
+                        startTime: {
+                                    hour:"number",
+                                    minute:"number",
+                                    second:"number"
+                                },
+                        endDate: : "Date",
+                        endTime: {
+                                    hour:"number",
+                                    minute:"number",
+                                    second:"number"
+                                },
+                        color : boolean,
+                        createdOn:  : "Date",
+                        modifiedOn : "Date"
 					}
 	    		]
 	    	}
-		
+		}
 	}
-	 * @apiErrorExample {json} Error-Response:
+	  @apiErrorExample {json} Error-Response:
 	 *
 	 * {
 	    "error": true,
-	    "message": "Error Occured.,
+	    "message": "Failed To create event",
 	    "status": 404/500,
 	    "data": null
 	   }
 	 */
 
-    app.post(`${baseUrl}/:eventId/delete`, auth.isAuthorized, eventController.deleteEventByEventId)
-
-/**
-	 * @api {post} /api/v1/events/:eventId/delete Delete event by eventId
+	app.post(`${baseUrl}/:eventId/delete`, auth.isAuthorized, eventController.deleteEventByEventId)
+	/**
+	 * @api {post} /api/v1/events/:eventId/delete Delete event
 	 * @apiVersion 0.0.1
-	 * @apiGroup delete
-	 *
-	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
-	 * @apiParam {String} eventId eventId of the event passed as the URL parameter
+     * 
+     * 
+     * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
+	 * @apiParam {String} eventId The eventId passed as URL parameter
 	 *
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
-	    "message": "Event Deleted Successfully",
+	    "message": "Deleted successfull.",
 	    "status": 200,
 	    "data": null
 		}
-		
-	 * @apiErrorExample {json} Error-Response:
+	}
+	  @apiErrorExample {json} Error-Response:
 	 *
 	 * {
 	    "error": true,
-	    "message": "Error Occured.,
+	    "message": "Error Occured while deleting event.",
 	    "status": 404/500,
 	    "data": null
 	   }
 	 */
 
-    app.put(`${baseUrl}/:eventId/edit`, auth.isAuthorized, eventController.editEventByEventId)
-
-/**
-	 * @api {put} /api/v1/events/:eventId/edit Edit blog by blogId
+	app.put(`${baseUrl}/:eventId/edit`, auth.isAuthorized, eventController.editEventByEventId)
+	/**
+	 * @api {post} /api/v1/events/:eventID/edit Edit an event
 	 * @apiVersion 0.0.1
-	 * @apiGroup edit
-	 *
+	 * 
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} eventId eventId of the event passed as the URL parameter
-	 *
+	 * 
+	 * 
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
-	    "message": "Event Edited Successfully.",
+	    "message": "Event edited successfully",
 	    "status": 200,
 	    "data": [
 					{
 						eventId: "string",
-						eventTitle: "string",
-						userId: "string",
-						startDate: "Date",
-						startTime: {
-                            hour:"number",
-                            minute:"number",
-                            second:"number"
-                        },
-						endDate: "Date",
-						endTime: {
-                            hour:"number",
-                            minute:"number",
-                            second:"number"
-                        },
-                        createdOn: "date",
-                        color : "string",
-                        modifiedOn : "date"
+                        eventTitle: "string",
+                        userId: "string",
+                        startDate : "Date",
+                        startTime: {
+                                    hour:"number",
+                                    minute:"number",
+                                    second:"number"
+                                },
+                        endDate: : "Date",
+                        endTime: {
+                                    hour:"number",
+                                    minute:"number",
+                                    second:"number"
+                                },
+                        color : boolean,
+                        createdOn:  : "Date",
+                        modifiedOn : "Date"
 					}
-					
 	    		]
-	    	
-		
+	    	}
+		}
 	}
-	 * @apiErrorExample {json} Error-Response:
+	  @apiErrorExample {json} Error-Response:
 	 *
 	 * {
 	    "error": true,
-	    "message": "Error Occured.,
+	    "message": "Failed to edit event",
 	    "status": 404/500,
 	    "data": null
 	   }
