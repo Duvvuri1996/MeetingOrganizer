@@ -127,7 +127,8 @@ let createEvent = (req, res) => {
             minute: (req.body.endTime).slice(3, 5),
             second: (req.body.endTime).slice(6)
         },
-        createdOn: today
+        createdOn: today,
+        color : req.body.color
     })
     newEvent.save((err, result) => {
         if (err) {
@@ -269,10 +270,10 @@ let editEventByEventId = (req, res) => {
                     }
                     transporter.sendMail(mailOptions, (err, info) => {
                         if (err) {
-                            console.log("Error while sending an email from deleteEventByEventId")
+                            console.log("Error while sending an email from editEventByEventId")
                             console.log(err)
                         } else {
-                            console.log("Successfully sent email from deleteEventByEventId")
+                            console.log("Successfully sent email from editEventByEventId")
                             console.log(info)
                         }
                     })

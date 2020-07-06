@@ -17,8 +17,16 @@ const User = new Schema ({
         type : String,
         default : ''
     },
+    fullName : {
+        type : String,
+        default : ''
+    },
     country :{
         type : String,
+        default : ''
+    },
+    telCode : {
+        type: String,
         default : ''
     },
     mobileNumber : {

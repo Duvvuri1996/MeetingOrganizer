@@ -186,7 +186,9 @@ let signUpFunction = (req, res) => {
                             userId: shortid.generate(),
                             firstName: req.body.firstName,
                             lastName: req.body.lastName,
+                            fullName : req.body.firstName+' '+req.body.lastName,
                             country: req.body.country,
+                            telCode : req.body.telCode,
                             mobileNumber: req.body.mobileNumber,
                             email: req.body.email,
                             password: passwordLib.hashPassword(req.body.password),
@@ -412,6 +414,7 @@ let recoveryMail = (req, res) => {
                         reject(apiResponse)
                     } else {
                         resolve(user)
+                        console.log(user.recoveryToken)
                     }
 
                 })
@@ -449,7 +452,7 @@ let recoveryMail = (req, res) => {
     generateToken(req, res)
         .then(sendMail)
         .then((resolve) => {
-            let apiResposne = response.generate(false, "Mail sent successfully to your email id", 200, null)
+            let apiResposne = response.generate(false, "Mail sent successfully to your email id", 200, userDetails.recoveryMail)
             res.send(apiResposne)
         })
         .catch((err) => {
