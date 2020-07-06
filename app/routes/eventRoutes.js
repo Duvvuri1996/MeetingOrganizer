@@ -14,7 +14,7 @@ module.exports.setRouter = (app) => {
 	/**
 	 * @api {get} /api/v1/events/all Get all events
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup events
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 *
@@ -67,7 +67,7 @@ module.exports.setRouter = (app) => {
 	/**
 	 * @api {get} /api/v1/events/all/:userId Get all events of a single user
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup events
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} userId userId of user as parameter
@@ -122,7 +122,7 @@ module.exports.setRouter = (app) => {
 	/**
 	 * @api {get} /api/v1/events/:eventId Get all events of a single user
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup events
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} eventId eventId of user as parameter
@@ -176,7 +176,7 @@ module.exports.setRouter = (app) => {
 	/**
 	 * @api {get} /api/v1/events/count/all Get count of all events
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup events
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 *
@@ -206,7 +206,7 @@ module.exports.setRouter = (app) => {
 	/**
 	 * @api {get} /api/v1/events/count/:userId Get count of all events of single user
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup events
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} userId userId of a user as parameter
@@ -238,6 +238,8 @@ module.exports.setRouter = (app) => {
 	/**
 	 * @api {get} /api/v1/events/create Create an event
 	 * @apiVersion 0.0.1
+	 * @apiGroup events
+	 * 
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} eventTitle eventTitle of the event passed as a body parameter
 	 * @apiParam {String} userId userId of the event passed as a body parameter
@@ -296,7 +298,7 @@ module.exports.setRouter = (app) => {
 	/**
 	 * @api {post} /api/v1/events/:eventId/delete Delete event
 	 * @apiVersion 0.0.1
-     * 
+     * @apiGroup events
      * 
      * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} eventId The eventId passed as URL parameter
@@ -330,6 +332,7 @@ module.exports.setRouter = (app) => {
 	/**
 	 * @api {post} /api/v1/events/:eventID/edit Edit an event
 	 * @apiVersion 0.0.1
+	 * @apiGroup events
 	 * 
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} eventId eventId of the event passed as the URL parameter
@@ -375,6 +378,6 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
-	 
+
 
 }

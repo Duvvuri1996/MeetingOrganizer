@@ -10,16 +10,15 @@ module.exports.setRouter = (app) => {
     app.get(`${baseUrl}/all`, auth.isAuthorized, userController.getAllUsers)
     
     
-    
     /**
 	 * @api {get} /api/v1/user/all Get all users
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup users
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 *
-	 *  @apiSuccessExample {json} Success-Response:
-	 *  {
+	 * @apiSuccessExample {json} Success-Response:
+	 * {
 	    "error": false,
 	    "message": "All User Details Found",
 	    "status": 200,
@@ -40,7 +39,7 @@ module.exports.setRouter = (app) => {
 	    	}
 		}
 	}
-	  @apiErrorExample {json} Error-Response:
+	 @apiErrorExample {json} Error-Response:
 	 *
 	 * {
 	    "error": true,
@@ -59,7 +58,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {get} /api/v1/user/all/normal Get all Normal users
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup users
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 *
@@ -104,7 +103,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {get} /api/v1/user/all/admin Get all Admin users
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup users
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 *
@@ -151,7 +150,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {get} /api/v1/user/:userId Get a single user by userId
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup users
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} userId The userId should be passed as the URL parameter
@@ -195,7 +194,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {post} /api/v1/user/signup Singnup user
 	 * @apiVersion 0.0.1
-     * 
+     * @apiGroup users
      * 
      * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} firstName firstName of the user passed as a body parameter
@@ -249,7 +248,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {post} /api/v1/user/login Login user
 	 * @apiVersion 0.0.1
-     * 
+     * @apiGroup users
      * 
      * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
      * @apiParam {String} email email of the user passed as a body parameter
@@ -297,7 +296,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {post} /api/v1/user/logout Logout user
 	 * @apiVersion 0.0.1
-     * 
+     * @apiGroup users
      * 
      * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * 
@@ -330,7 +329,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {post} /api/v1/user/:userId/delete Delete user
 	 * @apiVersion 0.0.1
-     * 
+     * @apiGroup users
      * 
      * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} userId The UserId passed as URL parameter
@@ -354,7 +353,7 @@ module.exports.setRouter = (app) => {
 	 */
 
 
-     
+
     app.post(`${baseUrl}/recoverymail`, userController.recoveryMail)
     
     
@@ -362,7 +361,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {post} /api/v1/user/recoverymail Recoverymail to reset password
 	 * @apiVersion 0.0.1
-     * 
+     * @apiGroup users
      * 
      * @apiParam {String} email email of the user passed as body parameter
 	 *
@@ -394,7 +393,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {post} /api/v1/user/resetpassword/:recoveryToken Reset password
 	 * @apiVersion 0.0.1
-     * 
+     * @apiGroup users
      * 
      * @apiParam {String} recoveryToken as URl parameter
      * @apiParam {String} password password of the user passed as body parameter
@@ -427,7 +426,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {get} /api/v1/user/count/normal Get count of all Normal users
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup users
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 *
@@ -459,7 +458,7 @@ module.exports.setRouter = (app) => {
     /**
 	 * @api {get} /api/v1/user/count/admin Get count of all Admin users
 	 * @apiVersion 0.0.1
-	 * 
+	 * @apiGroup users
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 *

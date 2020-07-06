@@ -35,7 +35,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/eventRoutes.js",
+    "filename": "app/routes/eventRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "name": "GetApiV1EventsAll"
@@ -83,7 +83,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/eventRoutes.js",
+    "filename": "app/routes/eventRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "name": "GetApiV1EventsAllUserid"
@@ -124,7 +124,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/eventRoutes.js",
+    "filename": "app/routes/eventRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "name": "GetApiV1EventsCountAll"
@@ -172,7 +172,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/eventRoutes.js",
+    "filename": "app/routes/eventRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "name": "GetApiV1EventsCountUserid"
@@ -262,7 +262,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/eventRoutes.js",
+    "filename": "app/routes/eventRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "name": "GetApiV1EventsCreate"
@@ -310,7 +310,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/eventRoutes.js",
+    "filename": "app/routes/eventRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "name": "GetApiV1EventsEventid"
@@ -358,7 +358,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/eventRoutes.js",
+    "filename": "app/routes/eventRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "name": "PostApiV1EventsEventidDelete"
@@ -406,7 +406,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/eventRoutes.js",
+    "filename": "app/routes/eventRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
     "name": "PostApiV1EventsEventidEdit"
@@ -447,7 +447,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "GetApiV1UserAll"
@@ -488,7 +488,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "GetApiV1UserAllAdmin"
@@ -529,7 +529,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "GetApiV1UserAllNormal"
@@ -570,7 +570,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "GetApiV1UserCountAdmin"
@@ -611,7 +611,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "GetApiV1UserCountNormal"
@@ -659,7 +659,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "GetApiV1UserUserid"
@@ -714,7 +714,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "PostApiV1UserLogin"
@@ -755,7 +755,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "PostApiV1UserLogout"
@@ -796,7 +796,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "PostApiV1UserRecoverymail"
@@ -844,7 +844,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "PostApiV1UserResetpasswordRecoverytoken"
@@ -948,7 +948,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "PostApiV1UserSignup"
@@ -996,7 +996,7 @@
         }
       ]
     },
-    "filename": "C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/userRoutes.js",
+    "filename": "app/routes/userRoutes.js",
     "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
     "name": "PostApiV1UserUseridDelete"
