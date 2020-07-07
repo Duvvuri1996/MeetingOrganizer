@@ -5,7 +5,7 @@ const eventController = require('../controllers/eventController')
 
 module.exports.setRouter = (app) => {
 
-    let baseUrl = `${appConfig.apiVersion}/events`
+	let baseUrl = `${appConfig.apiVersion}/events`
 
 	app.get(`${baseUrl}/all`, auth.isAuthorized, eventController.getAllEvents)
 
@@ -13,7 +13,7 @@ module.exports.setRouter = (app) => {
 
 	/**
 	 * @api {get} /api/v1/events/all Get all events
-	 * @apiVersion 0.0.1
+	 * @apiVersion 1.0.0
 	 * @apiGroup events
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
@@ -66,7 +66,7 @@ module.exports.setRouter = (app) => {
 
 	/**
 	 * @api {get} /api/v1/events/all/:userId Get all events of a single user
-	 * @apiVersion 0.0.1
+	 * @apiVersion 1.0.0
 	 * @apiGroup events
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
@@ -121,7 +121,7 @@ module.exports.setRouter = (app) => {
 
 	/**
 	 * @api {get} /api/v1/events/:eventId Get all events of a single user
-	 * @apiVersion 0.0.1
+	 * @apiVersion 1.0.0
 	 * @apiGroup events
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
@@ -170,12 +170,12 @@ module.exports.setRouter = (app) => {
 
 
 	app.get(`${baseUrl}/count/all`, auth.isAuthorized, eventController.getCountOfAllEvents)
-	
-	
-	
+
+
+
 	/**
 	 * @api {get} /api/v1/events/count/all Get count of all events
-	 * @apiVersion 0.0.1
+	 * @apiVersion 1.0.0
 	 * @apiGroup events
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
@@ -200,12 +200,12 @@ module.exports.setRouter = (app) => {
 
 
 	app.get(`${baseUrl}/count/:userId`, auth.isAuthorized, eventController.getAllEventsCountOfSingleUser)
-	
-	
-	
+
+
+
 	/**
 	 * @api {get} /api/v1/events/count/:userId Get count of all events of single user
-	 * @apiVersion 0.0.1
+	 * @apiVersion 1.0.0
 	 * @apiGroup events
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
@@ -232,12 +232,12 @@ module.exports.setRouter = (app) => {
 
 
 	app.post(`${baseUrl}/create`, auth.isAuthorized, eventController.createEvent)
-	
-	
-	
+
+
+
 	/**
 	 * @api {get} /api/v1/events/create Create an event
-	 * @apiVersion 0.0.1
+	 * @apiVersion 1.0.0
 	 * @apiGroup events
 	 * 
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
@@ -290,14 +290,14 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
-	 
+
 	app.post(`${baseUrl}/:eventId/delete`, auth.isAuthorized, eventController.deleteEventByEventId)
-	
-	
-	
+
+
+
 	/**
 	 * @api {post} /api/v1/events/:eventId/delete Delete event
-	 * @apiVersion 0.0.1
+	 * @apiVersion 1.0.0
      * @apiGroup events
      * 
      * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
@@ -325,13 +325,13 @@ module.exports.setRouter = (app) => {
 
 
 	app.put(`${baseUrl}/:eventId/edit`, auth.isAuthorized, eventController.editEventByEventId)
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * @api {post} /api/v1/events/:eventID/edit Edit an event
-	 * @apiVersion 0.0.1
+	 * @apiVersion 1.0.0
 	 * @apiGroup events
 	 * 
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)

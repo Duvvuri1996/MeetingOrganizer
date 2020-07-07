@@ -4,8 +4,7 @@
   "description": "To organize events",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "apidoc -i C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/routes/ -o apidoc/"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,10 +17,13 @@
   },
   "homepage": "https://github.com/Duvvuri1996/MeetingOrganizer#readme",
   "dependencies": {
+    "-": "0.0.1",
+    "apidoc": "^0.23.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "g": "^2.0.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.27.0",
     "moment-timezone": "^0.5.31",
