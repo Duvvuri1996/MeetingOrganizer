@@ -13,7 +13,6 @@ const app = express();
 const {
     port
 } = require('./app/Configuration/appConfig');
-
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
     extended: false

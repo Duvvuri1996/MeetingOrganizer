@@ -3,7 +3,8 @@ define({ "api": [
     "type": "get",
     "url": "/api/v1/events/all",
     "title": "Get all events",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "events",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -21,7 +22,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"All Events Details Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t\t{\n\t\t\t\t\t\teventId: \"string\",\n                        eventTitle: \"string\",\n                        userId: \"string\",\n                        startDate : \"Date\",\n                        startTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        endDate: : \"Date\",\n                        endTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        color : boolean,\n                        createdOn:  : \"Date\",\n                        modifiedOn : \"Date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"All Events Details Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t{\n\t\t\t\teventId: \"string\",\n                        eventTitle: \"string\",\n                        userId: \"string\",\n                        startDate : \"Date\",\n                        startTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        endDate: : \"Date\",\n                        endTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        color : boolean,\n                        createdOn:  : \"Date\",\n                        modifiedOn : \"Date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -36,15 +37,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/eventRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
+    "groupTitle": "events",
     "name": "GetApiV1EventsAll"
   },
   {
     "type": "get",
     "url": "/api/v1/events/all/:userId",
     "title": "Get all events of a single user",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "events",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -69,7 +70,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"All Events Details of a single user Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t\t{\n\t\t\t\t\t\teventId: \"string\",\n                        eventTitle: \"string\",\n                        userId: \"string\",\n                        startDate : \"Date\",\n                        startTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        endDate: : \"Date\",\n                        endTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        color : boolean,\n                        createdOn:  : \"Date\",\n                        modifiedOn : \"Date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"All Events Details of a single user Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t{\n\t\t\t\teventId: \"string\",\n                        eventTitle: \"string\",\n                        userId: \"string\",\n                        startDate : \"Date\",\n                        startTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        endDate: : \"Date\",\n                        endTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        color : boolean,\n                        createdOn:  : \"Date\",\n                        modifiedOn : \"Date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -84,15 +85,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/eventRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
+    "groupTitle": "events",
     "name": "GetApiV1EventsAllUserid"
   },
   {
     "type": "get",
     "url": "/api/v1/events/count/all",
     "title": "Get count of all events",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "events",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -125,15 +126,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/eventRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
+    "groupTitle": "events",
     "name": "GetApiV1EventsCountAll"
   },
   {
     "type": "get",
     "url": "/api/v1/events/count/:userId",
     "title": "Get count of all events of single user",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "events",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -173,15 +174,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/eventRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
+    "groupTitle": "events",
     "name": "GetApiV1EventsCountUserid"
   },
   {
     "type": "get",
     "url": "/api/v1/events/create",
     "title": "Create an event",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "events",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -248,7 +249,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Event created successfully\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t\t{\n\t\t\t\t\t\teventId: \"string\",\n                        eventTitle: \"string\",\n                        userId: \"string\",\n                        startDate : \"Date\",\n                        startTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        endDate: : \"Date\",\n                        endTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        color : boolean,\n                        createdOn:  : \"Date\",\n                        modifiedOn : \"Date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Event created successfully\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t{\n\t\t\t\teventId: \"string\",\n                        eventTitle: \"string\",\n                        userId: \"string\",\n                        startDate : \"Date\",\n                        startTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        endDate: : \"Date\",\n                        endTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        color : boolean,\n                        createdOn:  : \"Date\",\n                        modifiedOn : \"Date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -263,15 +264,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/eventRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
+    "groupTitle": "events",
     "name": "GetApiV1EventsCreate"
   },
   {
     "type": "get",
     "url": "/api/v1/events/:eventId",
-    "title": "Get all events of a single user",
-    "version": "0.0.1",
+    "title": "Get  event by eventId",
+    "version": "1.0.0",
+    "group": "events",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -296,7 +297,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Event Details\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t\t{\n\t\t\t\t\t\teventId: \"string\",\n                        eventTitle: \"string\",\n                        userId: \"string\",\n                        startDate : \"Date\",\n                        startTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        endDate: : \"Date\",\n                        endTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        color : boolean,\n                        createdOn:  : \"Date\",\n                        modifiedOn : \"Date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Event Details\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t{\n\t\t\t\teventId: \"string\",\n                        eventTitle: \"string\",\n                        userId: \"string\",\n                        startDate : \"Date\",\n                        startTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        endDate: : \"Date\",\n                        endTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        color : boolean,\n                        createdOn:  : \"Date\",\n                        modifiedOn : \"Date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -311,15 +312,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/eventRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
+    "groupTitle": "events",
     "name": "GetApiV1EventsEventid"
   },
   {
     "type": "post",
     "url": "/api/v1/events/:eventId/delete",
     "title": "Delete event",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "events",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -344,7 +345,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Deleted successfull.\",\n\t    \"status\": 200,\n\t    \"data\": null\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Deleted successfully.\",\n\t    \"status\": 200,\n\t    \"data\": null\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -359,15 +360,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/eventRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
+    "groupTitle": "events",
     "name": "PostApiV1EventsEventidDelete"
   },
   {
     "type": "post",
     "url": "/api/v1/events/:eventID/edit",
     "title": "Edit an event",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "events",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -392,7 +393,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Event edited successfully\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t\t{\n\t\t\t\t\t\teventId: \"string\",\n                        eventTitle: \"string\",\n                        userId: \"string\",\n                        startDate : \"Date\",\n                        startTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        endDate: : \"Date\",\n                        endTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        color : boolean,\n                        createdOn:  : \"Date\",\n                        modifiedOn : \"Date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Event edited successfully\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t{\n\t\t\t\teventId: \"string\",\n                        eventTitle: \"string\",\n                        userId: \"string\",\n                        startDate : \"Date\",\n                        startTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        endDate: : \"Date\",\n                        endTime: {\n                                    hour:\"number\",\n                                    minute:\"number\",\n                                    second:\"number\"\n                                },\n                        color : boolean,\n                        createdOn:  : \"Date\",\n                        modifiedOn : \"Date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -407,15 +408,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/eventRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\eventRoutes.js",
+    "groupTitle": "events",
     "name": "PostApiV1EventsEventidEdit"
   },
   {
     "type": "get",
     "url": "/api/v1/user/all",
     "title": "Get all users",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -433,7 +434,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"All User Details Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t\t{\n\t\t\t\t\t\tuserId: \"string\",\n                        firstName: \"string\",\n                        lastName: \"string\",\n                        fullName : \"string\",\n                        country: \"string\",\n                        mobileNumber: \"string\",\n                        email: \"Date\",\n                        isAdmin: boolean,\n                        uniqueUserName : \"string\",\n                        createdOn: \"date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": "{\n\t    \"error\": false,\n\t    \"message\": \"All User Details Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t{\n\t\t\t\tuserId: \"string\",\n                        firstName: \"string\",\n                        lastName: \"string\",\n                        fullName : \"string\",\n                        country: \"string\",\n                        mobileNumber: \"string\",\n                        email: \"Date\",\n                        isAdmin: boolean,\n                        uniqueUserName : \"string\",\n                        createdOn: \"date\"\n\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -448,15 +449,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "GetApiV1UserAll"
   },
   {
     "type": "get",
     "url": "/api/v1/user/all/admin",
     "title": "Get all Admin users",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -474,7 +475,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"All Admin User Details Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t\t{\n\t\t\t\t\t\tuserId: \"string\",\n                        firstName: \"string\",\n                        lastName: \"string\",\n                        fullName : \"string\",\n                        country: \"string\",\n                        mobileNumber: \"string\",\n                        email: \"Date\",\n                        isAdmin: boolean,\n                        uniqueUserName : \"string\",\n                        createdOn: \"date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"All Admin User Details Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t{\n\t\t\t\tuserId: \"string\",\n                        firstName: \"string\",\n                        lastName: \"string\",\n                        fullName : \"string\",\n                        country: \"string\",\n                        mobileNumber: \"string\",\n                        email: \"Date\",\n                        isAdmin: boolean,\n                        uniqueUserName : \"string\",\n                        createdOn: \"date\"\n\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -489,15 +490,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "GetApiV1UserAllAdmin"
   },
   {
     "type": "get",
     "url": "/api/v1/user/all/normal",
     "title": "Get all Normal users",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -515,7 +516,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"All Normal User Details Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t\t{\n\t\t\t\t\t\tuserId: \"string\",\n                        firstName: \"string\",\n                        lastName: \"string\",\n                        fullName : \"string\",\n                        country: \"string\",\n                        mobileNumber: \"string\",\n                        email: \"Date\",\n                        isAdmin: boolean,\n                        uniqueUserName : \"string\",\n                        createdOn: \"date\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"All Normal User Details Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t{\n\t\t\t\tuserId: \"string\",\n                        firstName: \"string\",\n                        lastName: \"string\",\n                        fullName : \"string\",\n                        country: \"string\",\n                        mobileNumber: \"string\",\n                        email: \"Date\",\n                        isAdmin: boolean,\n                        uniqueUserName : \"string\",\n                        createdOn: \"date\"\n\t\t\t\t}\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -530,15 +531,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "GetApiV1UserAllNormal"
   },
   {
     "type": "get",
     "url": "/api/v1/user/count/admin",
     "title": "Get count of all Admin users",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -571,15 +572,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "GetApiV1UserCountAdmin"
   },
   {
     "type": "get",
     "url": "/api/v1/user/count/normal",
     "title": "Get count of all Normal users",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -612,15 +613,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "GetApiV1UserCountNormal"
   },
   {
     "type": "get",
     "url": "/api/v1/user/:userId",
     "title": "Get a single user by userId",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -645,7 +646,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"User Found Successfully.\",\n\t    \"status\": 200,\n\t    \"data\": {\n\t    \t\t\tuserId: \"string\",\n                    firstName: \"string\",\n                    lastName: \"string\",\n                    fullName : \"string\",\n                    country: \"string\",\n                    mobileNumber: \"string\",\n                    email: \"Date\",\n                    isAdmin: boolean,\n                    uniqueUserName : \"string\",\n                    createdOn: \"date\"\n\t\t\t\t}\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"User Found Successfully.\",\n\t    \"status\": 200,\n\t    \"data\": {\n\t    \t\tuserId: \"string\",\n                    firstName: \"string\",\n                    lastName: \"string\",\n                    fullName : \"string\",\n                    country: \"string\",\n                    mobileNumber: \"string\",\n                    email: \"Date\",\n                    isAdmin: boolean,\n                    uniqueUserName : \"string\",\n                    createdOn: \"date\"\n\t\t\t\t}\n\t    \t}\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -660,15 +661,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "GetApiV1UserUserid"
   },
   {
     "type": "post",
     "url": "/api/v1/user/login",
     "title": "Login user",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -715,15 +716,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "PostApiV1UserLogin"
   },
   {
     "type": "post",
     "url": "/api/v1/user/logout",
     "title": "Logout user",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -756,15 +757,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "PostApiV1UserLogout"
   },
   {
     "type": "post",
     "url": "/api/v1/user/recoverymail",
     "title": "Recoverymail to reset password",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -797,15 +798,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "PostApiV1UserRecoverymail"
   },
   {
     "type": "post",
     "url": "/api/v1/user/resetpassword/:recoveryToken",
     "title": "Reset password",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -845,15 +846,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "PostApiV1UserResetpasswordRecoverytoken"
   },
   {
     "type": "post",
     "url": "/api/v1/user/signup",
-    "title": "Singnup user",
-    "version": "0.0.1",
+    "title": "Signup user",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -934,7 +935,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Signup successfull.\",\n\t    \"status\": 200,\n\t    \"data\": {\n\t    \t\t\tuserId: \"string\",\n                    firstName: \"string\",\n                    lastName: \"string\",\n                    fullName : \"string\",\n                    country: \"string\",\n                    mobileNumber: \"string\",\n                    email: \"Date\",\n                    isAdmin: boolean,\n                    uniqueUserName : \"string\",\n                    createdOn: \"date\"\n\t\t\t\t}\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Signup successfull.\",\n\t    \"status\": 200,\n\t    \"data\": {\n\t    \tuserId: \"string\",\n                    firstName: \"string\",\n                    lastName: \"string\",\n                    fullName : \"string\",\n                    country: \"string\",\n                    mobileNumber: \"string\",\n                    email: \"Date\",\n                    isAdmin: boolean,\n                    uniqueUserName : \"string\",\n                    createdOn: \"date\"\n\t\t\t\t}\n\t    \t}\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -949,15 +950,15 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "PostApiV1UserSignup"
   },
   {
     "type": "post",
     "url": "/api/v1/user/:userId/delete",
     "title": "Delete user",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "group": "users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -982,7 +983,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Deleted successfull.\",\n\t    \"status\": 200,\n\t    \"data\": null\n\t\t}\n\t}",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Deleted successfully.\",\n\t    \"status\": 200,\n\t    \"data\": null\n\t\t}\n\t}",
           "type": "json"
         }
       ]
@@ -997,8 +998,7 @@ define({ "api": [
       ]
     },
     "filename": "app/routes/userRoutes.js",
-    "group": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
-    "groupTitle": "C:\\Users\\HimRamesh\\Desktop\\edWisor\\FinalProject\\MeetingOrganizer\\app\\routes\\userRoutes.js",
+    "groupTitle": "users",
     "name": "PostApiV1UserUseridDelete"
   }
 ] });
