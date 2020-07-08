@@ -26,7 +26,7 @@ const Event = new Schema ({
         default : ''
     },
     startDate : {
-        type : Date,
+        type : String,
         default : ''
     },
     startTime : {
@@ -34,11 +34,11 @@ const Event = new Schema ({
         minute:Number,
         second:{
             type : Number,
-            default:00
+            default:''
         }
     },
     endDate : {
-        type : Date,
+        type : String,
         default : ''
     },
     endTime : {
@@ -46,7 +46,7 @@ const Event = new Schema ({
         minute:Number,
         second:{
             type : Number,
-            default:00
+            default:''
         }
     },
     color : {

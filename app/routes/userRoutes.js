@@ -391,7 +391,7 @@ module.exports.setRouter = (app) => {
     
     
     /**
-	 * @api {post} /api/v1/user/resetpassword/:recoveryToken Reset password
+	 * @api {post} /api/v1/user/reset/:recoveryToken/password Reset password
 	 * @apiVersion 1.0.0
      * @apiGroup users
      * 

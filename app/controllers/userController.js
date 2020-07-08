@@ -3,14 +3,14 @@ const shortid = require('shortid')
 const nodemailer = require('nodemailer')
 const authModel = mongoose.model('Auth')
 const userModel = mongoose.model('User')
-const validateInput = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/paramsValidationLib')
-const check = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/checkLib')
-const passwordLib = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/passwordLib')
-const time = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/timLib')
-const response = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/responseLib')
-const logger = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/logger')
-const token = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/libs/tokenLib')
-const appConfig = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer/app/Configuration/appConfig')
+const validateInput = require('../libs/paramsValidationLib')
+const check = require('../libs/checkLib')
+const passwordLib = require('../libs/passwordLib')
+const time = require('../libs/timLib')
+const response = require('../libs/responseLib')
+const logger = require('../libs/logger')
+const token = require('../libs/tokenLib')
+const appConfig = require('../Configuration/appConfig')
 
 let getAllUsers = (req, res) => {
     userModel.find()
@@ -382,7 +382,6 @@ let loginFunction = (req, res) => {
         })
         .catch((err) => {
             console.log(err+'is called')
-            res.sendStatus(err.status)
             res.send(err)
         })
 } //end login function
@@ -425,7 +424,7 @@ let recoveryMail = (req, res) => {
                         reject(apiResponse)
                     } else {
                         resolve(user)
-                        console.log(user.recoveryToken)
+                        console.log(user.recoveryToken+" is this to reset user password")
                     }
 
                 })
@@ -449,7 +448,7 @@ let recoveryMail = (req, res) => {
                 subject: 'Reset password',
                 html: 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link to complete the process:\n\n' +
-                    "<a'http://localhost:3000/'+appConfig.apiVersion+'resetpassword/'+userInfo.recoveryToken></a>"
+                    "<a'http://localhost:3000/'+appConfig.apiVersion+'/resetpassword/'+userInfo.recoveryToken></a>"
             }
             console.log(mailOptions)
             transporter.sendMail(mailOptions, (err, info) => {
@@ -477,18 +476,21 @@ let recoveryMail = (req, res) => {
 } //end recoveryMail function
 
 let resetPassword = (req, res) => {
+    
     let validateRecoveryToken = () => {
         return new Promise((resolve, reject) => {
             userModel.findOne({
-                recoveryToken: req.params.recoveryToken,
-                recoveryTokenDetails: {
-                    $gt: Date.now()
+                'recoveryToken' : req.params.recoveryToken,
+                'recoveryTokenExpiration': {
+                   $gt: Date.now()
                 }
             }, (err, user) => {
+                console.log(user)
                 if (err) {
                     let apiResponse = response.generate(true, "Token has expired or invalid")
                     reject(apiResponse)
                 } else {
+                    console.log(req.body.password)
                     user.password = passwordLib.hashPassword(req.body.password)
                     user.recoveryToken = undefined
                     user.recoveryTokenExpiration = undefined

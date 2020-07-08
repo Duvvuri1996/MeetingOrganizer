@@ -12,6 +12,7 @@ const token = require('../libs/tokenLib')
 const passwordLib = require('../libs/passwordLib')
 const time = require('../libs/timLib')
 const appConfig = require('../Configuration/appConfig')
+const setEventDate = require('../libs/setEventDate')
 
 
 let getAllEvents = (req, res) => {
@@ -69,9 +70,10 @@ let getSingleEventByEventId = (req, res) => {
 
 let getAllEventsOfSingleUser = (req, res) => {
     if (req.params.userId) {
-        eventModel.findOne({
-            userId: req.params.userId
+        eventModel.find({
+            'userId': req.params.userId
         }, (err, userEventDetails) => {
+            console.log(userEventDetails)
             if (err) {
                 logger.error(err.message, "getAllEventsOfSingleUser function", 10)
                 let apiResponse = response.generate(true, "Failed to retrieve data", 404, null)
@@ -93,8 +95,9 @@ let getAllEventsOfSingleUser = (req, res) => {
 } //end getAllEventsOfSingleUser function
 
 let getAllEventsCountOfSingleUser = (req, res) => {
+    console.log(req.params.userId)
     if (req.params.userId) {
-        eventModel.count({
+        eventModel.countDocuments({
             userId: req.params.userId
         }, (err, count) => {
             if (err) {
@@ -102,6 +105,7 @@ let getAllEventsCountOfSingleUser = (req, res) => {
                 let apiResponse = response.generate(true, "Failed to retireve data", 404, null)
                 res.send(apiResponse)
             } else {
+                console.log(count)
                 let apiResponse = response.generate(false, "Count retrieved", 200, count)
                 res.send(apiResponse)
             }
@@ -115,13 +119,13 @@ let createEvent = (req, res) => {
         eventId: shortid.generate(),
         eventTitle: req.body.eventTitle,
         userId: req.body.userId,
-        startDate: req.body.startDate,
+        startDate: setEventDate.setDate(req.body.startDate),
         startTime: {
-            hour: (req.body.endTime).slice(0, 2),
-            minute: (req.body.endTime).slice(3, 5),
-            second: (req.body.endTime).slice(6,8)
+            hour: (req.body.startTime).slice(0, 2),
+            minute: (req.body.startTime).slice(3, 5),
+            second: (req.body.startTime).slice(6,8)
         },
-        endDate: req.body.endDate,
+        endDate: setEventDate.setDate(req.body.endDate),
         endTime: {
             hour: (req.body.endTime).slice(0, 2),
             minute: (req.body.endTime).slice(3, 5),
@@ -131,6 +135,7 @@ let createEvent = (req, res) => {
         color : req.body.color
     })
     newEvent.save((err, result) => {
+        console.log(newEvent)
         if (err) {
             logger.error(err.message, "createEvent function", 10)
             let apiResponse = response.generate(true, "Failed to create event", 404, null)
@@ -231,7 +236,7 @@ let deleteEventByEventId = (req, res) => {
 
 let editEventByEventId = (req, res) => {
     let options = req.body;
-    eventModel.findOneAndUpdate({
+    eventModel.update({
         'eventId': req.params.eventId
     }, options).exec((err, result) => {
         if (err) {
