@@ -7,6 +7,8 @@ module.exports.setRouter = (app) => {
 
     let baseUrl = `${appConfig.apiVersion}/user`
 
+	app.get(`${baseUrl}/allnames`, userController.getCountryNamesWithCodes)
+
     app.get(`${baseUrl}/all`, auth.isAuthorized, userController.getAllUsers)
     
     
@@ -477,5 +479,6 @@ module.exports.setRouter = (app) => {
 	    "data": null
 	   }
 	 */
+	
 
 }

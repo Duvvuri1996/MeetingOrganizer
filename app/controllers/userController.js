@@ -12,6 +12,13 @@ const logger = require('../libs/logger')
 const token = require('../libs/tokenLib')
 const appConfig = require('../Configuration/appConfig')
 const countryName = require('../libs/countryName')
+const callingCodes = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer-Backend/country-json/src/country-by-calling-code')
+
+let getCountryNamesWithCodes = (req, res) => {
+    let data = callingCodes
+    let apiResponse = response.generate(false, "All names", 200, data)
+    res.send(apiResponse)
+}
 
 let getAllUsers = (req, res) => {
     userModel.find()
@@ -532,5 +539,6 @@ module.exports = {
     loginFunction: loginFunction,
     logoutFunction: logoutFunction,
     recoveryMail : recoveryMail,
-    resetPassword : resetPassword
+    resetPassword : resetPassword,
+    getCountryNamesWithCodes:getCountryNamesWithCodes
 }
