@@ -11,6 +11,7 @@ const response = require('../libs/responseLib')
 const logger = require('../libs/logger')
 const token = require('../libs/tokenLib')
 const appConfig = require('../Configuration/appConfig')
+const countryName = require('../libs/countryName')
 
 let getAllUsers = (req, res) => {
     userModel.find()
@@ -194,12 +195,10 @@ let signUpFunction = (req, res) => {
                             lastName: req.body.lastName,
                             fullName : req.body.firstName+' '+req.body.lastName,
                             country: req.body.country,
-                            telCode : req.body.telCode,
                             mobileNumber: req.body.mobileNumber,
                             email: req.body.email,
                             password: passwordLib.hashPassword(req.body.password),
                             isAdmin: req.body.isAdmin,
-                            uniqueUserName: req.body.uniqueUserName,
                             createdOn: time.now()
                         })
                         if(newUser.isAdmin === true){
@@ -207,7 +206,9 @@ let signUpFunction = (req, res) => {
                         } else {
                             newUser.uniqueUserName = req.body.uniqueUserName
                         }
-
+                        newUser.telCode = countryName.countryCallingCode(req.body.country)
+                        console.log(req.body.country)
+                        console.log(telCode)
                         newUser.save((err, newUser) => {
                             if (err) {
                                 console.log(err)

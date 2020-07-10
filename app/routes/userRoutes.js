@@ -196,7 +196,6 @@ module.exports.setRouter = (app) => {
 	 * @apiVersion 1.0.0
      * @apiGroup users
      * 
-     * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} firstName firstName of the user passed as a body parameter
      * @apiParam {String} lastName lastName of the user passed as a body parameter
      * @apiParam {String} country country of the user passed as a body parameter
@@ -250,7 +249,6 @@ module.exports.setRouter = (app) => {
 	 * @apiVersion 1.0.0
      * @apiGroup users
      * 
-     * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
      * @apiParam {String} email email of the user passed as a body parameter
      * @apiParam {String} password password of the user passed as a body parameter
 	 * 
