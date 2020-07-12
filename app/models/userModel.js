@@ -45,6 +45,10 @@ const User = new Schema ({
         type : Boolean,
         default:false
     },
+    isUser : {
+        type : Boolean,
+        default : false
+    },
     uniqueUserName : {
         type : String,
         default : ''

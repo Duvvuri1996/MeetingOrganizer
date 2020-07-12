@@ -208,7 +208,7 @@ module.exports.setRouter = (app) => {
      * @apiParam {String} uniqueUserName uniqueUserName of the user passed as a body parameter
      * @apiParam {String} email email of the user passed as a body parameter
      * @apiParam {String} password password of the user passed as a body parameter
-	 * 
+	 * @apiParam {Boolean} isUser isUser of the user passed as a body parameter
 	 *
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {

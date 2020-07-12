@@ -213,6 +213,7 @@ let signUpFunction = (req, res) => {
                             email: req.body.email,
                             password: passwordLib.hashPassword(req.body.password),
                             isAdmin: req.body.isAdmin,
+                            isUser : req.body.isUser,
                             uniqueUserName: req.body.uniqueUserName,
                             createdOn: time.now()
                         })

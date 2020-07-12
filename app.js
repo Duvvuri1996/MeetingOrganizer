@@ -55,6 +55,9 @@ server.on('error', onError)
 server.on('listening', onListening)
 //end server listening code
 
+const socketLib = require("./app/libs/socketLib");
+const socketServer = socketLib.setServer(server);
+
 /**
  * Http server error event
  */
