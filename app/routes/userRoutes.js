@@ -8,6 +8,7 @@ module.exports.setRouter = (app) => {
     let baseUrl = `${appConfig.apiVersion}/user`
 
 	app.get(`${baseUrl}/allnames`, userController.getCountryNamesWithCodes)
+	app.get(`${baseUrl}/allPhoneCodes`, userController.getCountryPhoneCodes)
 
     app.get(`${baseUrl}/all`, auth.isAuthorized, userController.getAllUsers)
     
@@ -194,14 +195,14 @@ module.exports.setRouter = (app) => {
     
     
     /**
-	 * @api {post} /api/v1/user/signup Singnup user
+	 * @api {post} /api/v1/user/signup Signup user
 	 * @apiVersion 1.0.0
      * @apiGroup users
      * 
+     * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} firstName firstName of the user passed as a body parameter
      * @apiParam {String} lastName lastName of the user passed as a body parameter
      * @apiParam {String} country country of the user passed as a body parameter
-     * @apiParam {String} telCode telCode of the user passed as a body parameter
      * @apiParam {Number} mobileNumber mobileNumber of the user passed as a body parameter
      * @apiParam {Boolean} isAdmin isAdmin of the user passed as a body parameter
      * @apiParam {String} uniqueUserName uniqueUserName of the user passed as a body parameter
@@ -215,11 +216,12 @@ module.exports.setRouter = (app) => {
 	    "message": "Signup successfull.",
 	    "status": 200,
 	    "data": {
-	    			userId: "string",
+	    	userId: "string",
                     firstName: "string",
                     lastName: "string",
                     fullName : "string",
-                    country: "string",
+					country: "string",
+					telCode: "string",
                     mobileNumber: "string",
                     email: "Date",
                     isAdmin: boolean,
@@ -386,16 +388,16 @@ module.exports.setRouter = (app) => {
 
 
 
-    app.post(`${baseUrl}/resetpassword/:recoveryToken`, userController.resetPassword)
+    app.post(`${baseUrl}/resetpassword`, userController.resetPassword)
     
     
     
     /**
-	 * @api {post} /api/v1/user/reset/:recoveryToken/password Reset password
+	 * @api {post} /api/v1/user/resetpassword Reset password
 	 * @apiVersion 1.0.0
      * @apiGroup users
      * 
-     * @apiParam {String} recoveryToken as URl parameter
+     * @apiParam {String} recoveryToken as body parameter
      * @apiParam {String} password password of the user passed as body parameter
 	 *
      * 

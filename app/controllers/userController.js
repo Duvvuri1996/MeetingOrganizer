@@ -12,11 +12,18 @@ const logger = require('../libs/logger')
 const token = require('../libs/tokenLib')
 const appConfig = require('../Configuration/appConfig')
 const countryName = require('../libs/countryName')
-const callingCodes = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer-Backend/country-json/src/country-by-calling-code')
+const countrynameCode = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer-Backend/app/libs/countrynameCode')
+const phonecode = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer-Backend/app/libs/phonecode')
 
 let getCountryNamesWithCodes = (req, res) => {
-    let data = callingCodes
-    let apiResponse = response.generate(false, "All names", 200, data)
+    let data = countrynameCode
+    let apiResponse = response.generate(false, "Country names", 200, data)
+    res.send(apiResponse)
+}
+
+let getCountryPhoneCodes = (req, res) => {
+    let data = phonecode
+    let apiResponse = response.generate(false, "Phone codes", 200, data)
     res.send(apiResponse)
 }
 
@@ -200,22 +207,22 @@ let signUpFunction = (req, res) => {
                             userId: shortid.generate(),
                             firstName: req.body.firstName,
                             lastName: req.body.lastName,
-                            fullName : req.body.firstName+' '+req.body.lastName,
+                            fullName: req.body.firstName + ' ' + req.body.lastName,
                             country: req.body.country,
                             mobileNumber: req.body.mobileNumber,
                             email: req.body.email,
                             password: passwordLib.hashPassword(req.body.password),
                             isAdmin: req.body.isAdmin,
+                            uniqueUserName: req.body.uniqueUserName,
                             createdOn: time.now()
                         })
-                        if(newUser.isAdmin === true){
-                            newUser.uniqueUserName = req.body.uniqueUserName+'-admin'
+                        if (newUser.isAdmin === true) {
+                            newUser.uniqueUserName = req.body.uniqueUserName + '-admin'
                         } else {
                             newUser.uniqueUserName = req.body.uniqueUserName
                         }
                         newUser.telCode = countryName.countryCallingCode(req.body.country)
-                        console.log(req.body.country)
-                        console.log(telCode)
+
                         newUser.save((err, newUser) => {
                             if (err) {
                                 console.log(err)
@@ -225,7 +232,7 @@ let signUpFunction = (req, res) => {
                             } else {
                                 let newUserObj = newUser.toObject();
                                 resolve(newUserObj)
-                                console.log(newUserObj.password +'is called and displayed')
+                                console.log(newUserObj.password + 'is called and displayed')
                             }
                         })
                     } else {
@@ -238,7 +245,8 @@ let signUpFunction = (req, res) => {
     } //end create user function
     validateParams(req, res)
         .then(createUser)
-        .then((resolve) => {            
+        .then((resolve) => {
+            delete resolve.password;
             let apiResponse = response.generate(false, 'User created successfully', 200, resolve)
             res.send(apiResponse)
         })
@@ -279,7 +287,7 @@ let loginFunction = (req, res) => {
     } //end findUser function
 
     let validatePasswordInput = (retrievedUserDetails) => {
-        console.log(retrievedUserDetails+'retrievedUserDetails is called')
+        console.log(retrievedUserDetails + 'retrievedUserDetails is called')
         console.log(req.body.password + 'is called')
         console.log("validatePasswordInput is called")
         return new Promise((resolve, reject) => {
@@ -347,9 +355,9 @@ let loginFunction = (req, res) => {
                             let responseBody = {
                                 authToken: newToken.authToken,
                                 userDetails: tokenDetails.userDetails,
-                                
+
                             }
-                            
+
                             resolve(responseBody)
                         }
                     })
@@ -368,7 +376,7 @@ let loginFunction = (req, res) => {
                             let responseBody = {
                                 authToken: newToken.authToken,
                                 userDetails: tokenDetails.userDetails,
-                                
+
                             }
                             resolve(responseBody)
                         }
@@ -389,7 +397,7 @@ let loginFunction = (req, res) => {
             res.send(apiResponse)
         })
         .catch((err) => {
-            console.log(err+'is called')
+            console.log(err + 'is called')
             res.send(err)
         })
 } //end login function
@@ -414,7 +422,7 @@ let logoutFunction = (req, res) => {
 } //end logout function
 
 let recoveryMail = (req, res) => {
-    let generateToken = () => {
+    let findUser = () => {
         return new Promise((resolve, reject) => {
             userModel.findOne({
                 email: req.body.email
@@ -422,29 +430,72 @@ let recoveryMail = (req, res) => {
                 if (err) {
                     let apiResponse = response.generate(true, "User does not exists", 404, null)
                     reject(apiResponse)
+                } else if (check.isEmpty(userDetails)) {
+                    /* generate the response and the console error message here */
+                    logger.error('No User Found', 'generateToken()', 7)
+                    let apiResponse = response.generate(true, 'No User Details Found', 404, null)
+                    reject(apiResponse)
                 } else {
-                    userDetails.recoveryToken = shortid.generate()
-                    userDetails.recoveryTokenExpiration = Date.now() + 3600000
+                    /* prepare the message and the api response here */
+                    logger.info('User Found', 'userController: findUser()', 10)
+                    resolve(userDetails)
                 }
-                userDetails.save((err, user) => {
-                    if (err) {
-                        let apiResponse = response.generate(true, "Failed to save", 400, null)
-                        reject(apiResponse)
-                    } else {
-                        resolve(user)
-                        console.log(user.recoveryToken+" is this to reset user password")
-                    }
-
-                })
             })
         })
-    }//end generateToken function
+    } //end generateToken function
 
-    let sendMail = (userInfo) => {
-        console.log(userInfo)
+    let generateRecoveryToken = (userDetails) => {
+        console.log(userDetails + " in sendMail function")
+        return new Promise((resolve, reject) => {
+            token.generateJwt(userDetails, (err, tokenDetails) => {
+                if (err) {
+                    console.log(err)
+                    let apiResponse = response.generate(true, 'Failed To Generate Token', 500, null)
+                    reject(apiResponse)
+                } else {
+                    tokenDetails.userId = userDetails.userId
+                    tokenDetails.userDetails = userDetails
+                    resolve(tokenDetails)
+                }
+            })
+        })
+    } //end generateRecoveryToken function
+
+    let setRecoveryToken = (tokenDetails) => {
+        return new Promise((resolve, reject) => {
+            userModel.findOne({
+                email : req.body.email
+            }).exec((err, userDetails) => {
+                console.log(userDetails.recoveryToken)
+                if (err) {
+                    console.log(err)
+                    logger.error(err.message, 'resetPasswordFunction', 10)
+                    let apiResponse = response.generate(true, 'Failed To find user', 500, null)
+                    reject(apiResponse)
+                } else {
+                    userDetails.recoveryToken = tokenDetails.token
+                    userDetails.save((err, updatedDetails) => {
+                        console.log(userDetails.recoveryToken)
+                if (err) {
+                    console.log(err)
+                    logger.error(err.message, 'resetPasswordFunction', 10)
+                    let apiResponse = response.generate(true, 'Failed To save details', 500, null)
+                    reject(apiResponse)
+                } else {
+                    resolve(userDetails)
+                    console.log(userDetails)
+                }
+                    })
+                }
+            })
+        })
+    }
+
+
+    let sendMail = (userDetails) => {
         return new Promise((resolve, reject) => {
             let transporter = nodemailer.createTransport({
-                service: 'Gmail',
+                service: 'gmail',
                 auth: {
                     user: appConfig.mailer.auth.user,
                     pass: appConfig.mailer.auth.pass
@@ -452,11 +503,17 @@ let recoveryMail = (req, res) => {
             })
             let mailOptions = {
                 from: appConfig.mailer.auth.user,
-                to: userInfo.email,
+                to: userDetails.email,
                 subject: 'Reset password',
-                html: 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
-                    'Please click on the following link to complete the process:\n\n' +
-                    "<a'http://localhost:3000/'+appConfig.apiVersion+'/resetpassword/'+userInfo.recoveryToken></a>"
+                html: `<h4>Hi ${userDetails.fullName}<h4>
+                    <p>You are receiving this because you have requested the reset of the password for your account.<br>
+                        <br>'Please click on the following link to complete the process.'<br>
+                        <br> <a href="http://localhost:4200/resetpassword/${userDetails.recoveryToken}">Reset Password</a>
+                    </p>
+                    <p>
+                    <br>If You have'nt initiated this request please ignore<br>
+                    <br>Thank you<br>
+                    </p>`
             }
             console.log(mailOptions)
             transporter.sendMail(mailOptions, (err, info) => {
@@ -469,11 +526,15 @@ let recoveryMail = (req, res) => {
                 }
             })
         })
-    }//end senEmail function
-    generateToken(req, res)
+    } //end senEmail function
+
+
+    findUser(req, res)
+        .then(generateRecoveryToken)
+        .then(setRecoveryToken)
         .then(sendMail)
         .then((resolve) => {
-            let apiResposne = response.generate(false, "Mail sent successfully to your email id", 200, userDetails.recoveryMail)
+            let apiResposne = response.generate(false, "Mail sent successfully to your email id", 200, resolve)
             res.send(apiResposne)
         })
         .catch((err) => {
@@ -484,38 +545,64 @@ let recoveryMail = (req, res) => {
 } //end recoveryMail function
 
 let resetPassword = (req, res) => {
-    
-    let validateRecoveryToken = () => {
+    let findUser = () => {
+        console.log(req.body)
         return new Promise((resolve, reject) => {
-            userModel.findOne({
-                'recoveryToken' : req.params.recoveryToken,
-                'recoveryTokenExpiration': {
-                   $gt: Date.now()
-                }
-            }, (err, user) => {
-                console.log(user)
-                if (err) {
-                    let apiResponse = response.generate(true, "Token has expired or invalid")
-                    reject(apiResponse)
-                } else {
-                    console.log(req.body.password)
-                    user.password = passwordLib.hashPassword(req.body.password)
-                    user.recoveryToken = undefined
-                    user.recoveryTokenExpiration = undefined
-                }
-                user.save((err, details) => {
+            if (req.body.recoveryToken) {
+                userModel.findOne({
+                    recoveryToken: req.body.recoveryToken
+                }, (err, userTokenDetails) => {
+                    console.log(userTokenDetails)
                     if (err) {
-                        let apiResponse = response.generate(true, "Failed to save details...Unknwon error occured", 400, null)
+                        console.log(err)
+                        logger.error('Failed To Retrieve User Data', 'findUser()', 10)
+                        /* generate the error message and the api response message here */
+                        let apiResponse = response.generate(true, 'Failed To Find User Details', 500, null)
+                        reject(apiResponse)
+                        /* if Company Details is not found */
+                    } else if (check.isEmpty(userTokenDetails)) {
+                        /* generate the response and the console error message here */
+                        logger.error('No User Found', 'findUser()', 7)
+                        let apiResponse = response.generate(true, 'No User Details Found', 404, null)
                         reject(apiResponse)
                     } else {
-                        resolve(details)
+                        /* prepare the message and the api response here */
+                        logger.info('User Found', 'findUser()', 10)
+                        resolve(userTokenDetails)
                     }
                 })
-            })
-
+            } else {
+                let apiResponse = response.generate(true, '"validationToken" parameter is missing', 400, null)
+                reject(apiResponse)
+            }
         })
     }
-    validateRecoveryToken(req, res)
+
+    let updateResetPassword = (userTokenDetails) => {
+        return new Promise((resolve, reject) => {
+            let options = {
+                password: passwordLib.hashPassword(req.body.password),
+                recoveryToken:'Null'
+            }
+            userModel.update({ 'userId': userTokenDetails.userId }, options).exec((err, result) => {
+                if (err) {
+                    console.log(err)
+                    logger.error(err.message, 'updateResetPassword function', 10)
+                    let apiResponse = response.generate(true, 'Failed To reset user Password', 500, null)
+                    reject(apiResponse)
+                } else if (check.isEmpty(result)) {
+                    logger.info('No User Found with given Details', 'updateResetPassword function')
+                    let apiResponse = response.generate(true, 'No User Found', 404, null)
+                    reject(apiResponse)
+                } else {
+                    let apiResponse = response.generate(false, 'Password Updated successfully', 200, result)
+                    resolve(apiResponse)
+                }
+            })
+        })
+    }
+    findUser(req, res)
+    .then(updateResetPassword)
         .then((resolve) => {
             let apiResponse = response.generate(false, "Password reset successful...please login to continue", 200, null)
             res.send(apiResponse)
@@ -538,7 +625,8 @@ module.exports = {
     signUpFunction: signUpFunction,
     loginFunction: loginFunction,
     logoutFunction: logoutFunction,
-    recoveryMail : recoveryMail,
-    resetPassword : resetPassword,
-    getCountryNamesWithCodes:getCountryNamesWithCodes
+    recoveryMail: recoveryMail,
+    resetPassword: resetPassword,
+    getCountryNamesWithCodes: getCountryNamesWithCodes,
+    getCountryPhoneCodes: getCountryPhoneCodes
 }
