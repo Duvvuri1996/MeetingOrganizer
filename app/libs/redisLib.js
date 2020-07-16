@@ -1,7 +1,8 @@
 //redis lib
 const check = require("./checkLib.js");
 const redis = require('redis');
-let client = redis.createClient();
+
+let   client = redis.createClient();
 
 client.on('connect', () => {
 
@@ -9,6 +10,7 @@ client.on('connect', () => {
 
 });
 
+//start getAllUsersInHash to set in a common room
 let getAllUsersInHash = (hashName, callback) => {
 
     client.HGETALL(hashName, (err, result) => {
@@ -37,6 +39,7 @@ let getAllUsersInHash = (hashName, callback) => {
 
 }// end get all users in a hash
 
+
 // function to set new online user.
 let setNewOnlineUserInHash = (hashName, key, value, callback) => {
    
@@ -57,6 +60,7 @@ let setNewOnlineUserInHash = (hashName, key, value, callback) => {
 
 }// end set a new online user in hash
 
+//start deleteUserFromHash to delete userName from common room after logout
 let deleteUserFromHash = (hashName,key)=>{
 
     client.HDEL(hashName,key);

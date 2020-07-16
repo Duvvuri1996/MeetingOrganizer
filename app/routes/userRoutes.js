@@ -31,9 +31,10 @@ module.exports.setRouter = (app) => {
                         firstName: "string",
                         lastName: "string",
                         fullName : "string",
-                        country: "string",
+						country: "string",
+						telCode: "string",
                         mobileNumber: "string",
-                        email: "Date",
+                        email: "string",
                         isAdmin: boolean,
                         uniqueUserName : "string",
                         createdOn: "date"
@@ -76,9 +77,10 @@ module.exports.setRouter = (app) => {
                         firstName: "string",
                         lastName: "string",
                         fullName : "string",
-                        country: "string",
+						country: "string",
+						telCode: "string",
                         mobileNumber: "string",
-                        email: "Date",
+                        email: "string",
                         isAdmin: boolean,
                         uniqueUserName : "string",
                         createdOn: "date"
@@ -121,9 +123,10 @@ module.exports.setRouter = (app) => {
                         firstName: "string",
                         lastName: "string",
                         fullName : "string",
-                        country: "string",
+						country: "string",
+						telCode: "string",
                         mobileNumber: "string",
-                        email: "Date",
+                        email: "string",
                         isAdmin: boolean,
                         uniqueUserName : "string",
                         createdOn: "date"
@@ -168,9 +171,10 @@ module.exports.setRouter = (app) => {
                     firstName: "string",
                     lastName: "string",
                     fullName : "string",
-                    country: "string",
+					country: "string",
+					telCode: "string",
                     mobileNumber: "string",
-                    email: "Date",
+                    email: "string",
                     isAdmin: boolean,
                     uniqueUserName : "string",
                     createdOn: "date"
@@ -199,7 +203,6 @@ module.exports.setRouter = (app) => {
 	 * @apiVersion 1.0.0
      * @apiGroup users
      * 
-     * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
 	 * @apiParam {String} firstName firstName of the user passed as a body parameter
      * @apiParam {String} lastName lastName of the user passed as a body parameter
      * @apiParam {String} country country of the user passed as a body parameter
@@ -223,7 +226,7 @@ module.exports.setRouter = (app) => {
 					country: "string",
 					telCode: "string",
                     mobileNumber: "string",
-                    email: "Date",
+                    email: "string",
                     isAdmin: boolean,
                     uniqueUserName : "string",
                     createdOn: "date"
@@ -270,7 +273,7 @@ module.exports.setRouter = (app) => {
                     fullName : "string",
                     country: "string",
                     mobileNumber: "string",
-                    email: "Date",
+                    email: "string",
                     isAdmin: boolean,
                     uniqueUserName : "string",
                     createdOn: "date"
@@ -339,7 +342,7 @@ module.exports.setRouter = (app) => {
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
-	    "message": "Deleted successfull.",
+	    "message": "Deleted successfully.",
 	    "status": 200,
 	    "data": null
 		}
@@ -371,7 +374,7 @@ module.exports.setRouter = (app) => {
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
-	    "message": "Email sent successfull.",
+	    "message": "Email sent successfully.",
 	    "status": 200,
 	    "data": "Please check your email"
 		}

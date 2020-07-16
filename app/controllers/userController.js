@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
+
 const shortid = require('shortid')
 const nodemailer = require('nodemailer')
+
 const authModel = mongoose.model('Auth')
 const userModel = mongoose.model('User')
 const validateInput = require('../libs/paramsValidationLib')
@@ -15,6 +17,7 @@ const countryName = require('../libs/countryName')
 const countrynameCode = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer-Backend/app/libs/countrynameCode')
 const phonecode = require('C:/Users/HimRamesh/Desktop/edWisor/FinalProject/MeetingOrganizer-Backend/app/libs/phonecode')
 
+
 let getCountryNamesWithCodes = (req, res) => {
     let data = countrynameCode
     let apiResponse = response.generate(false, "Country names", 200, data)
@@ -27,6 +30,7 @@ let getCountryPhoneCodes = (req, res) => {
     res.send(apiResponse)
 }
 
+//start getAllUsers function
 let getAllUsers = (req, res) => {
     userModel.find()
         .select(' -__v -_id -password')
@@ -47,6 +51,7 @@ let getAllUsers = (req, res) => {
         })
 } // end get all users
 
+//start getAllNormalUsers function
 let getAllNormalUsers = (req, res) => {
     userModel.find({
         isAdmin: false
@@ -66,6 +71,7 @@ let getAllNormalUsers = (req, res) => {
     })
 } //end get all normal users
 
+//start getAllAdminUsers function
 let getAllAdminUsers = (req, res) => {
     userModel.find({
             isAdmin: true
@@ -88,6 +94,7 @@ let getAllAdminUsers = (req, res) => {
         })
 } //end get all admin users
 
+//start getUserByUserId function
 let getUserByUserId = (req, res) => {
     userModel.findOne({
             'userId': req.params.userId
@@ -110,6 +117,7 @@ let getUserByUserId = (req, res) => {
         })
 } //end get user by userid
 
+//start getAllNormalUsersCount function
 let getAllNormalUsersCount = (req, res) => {
     userModel.count({
             isAdmin: false
@@ -130,6 +138,7 @@ let getAllNormalUsersCount = (req, res) => {
         })
 } //end getAllNormalUsersCount function
 
+//start getAllAdminUsersCount
 let getAllAdminUsersCount = (req, res) => {
     userModel.count({
             isAdmin: true
@@ -150,6 +159,7 @@ let getAllAdminUsersCount = (req, res) => {
         })
 } // end getAllAdminUsersCount function
 
+//start deleteUserByUserId
 let deleteUserByUserId = (req, res) => {
     userModel.findOneAndRemove({
             'userId': req.params.userId
@@ -170,6 +180,7 @@ let deleteUserByUserId = (req, res) => {
         })
 } //end deleteUserByUserId function
 
+//start signUpFunction
 let signUpFunction = (req, res) => {
     let validateParams = () => {
         return new Promise((resolve, reject) => {
@@ -258,6 +269,7 @@ let signUpFunction = (req, res) => {
 
 } //end signup function
 
+//start login function
 let loginFunction = (req, res) => {
     let findUser = () => {
         console.log('findUser function is called')
@@ -288,8 +300,8 @@ let loginFunction = (req, res) => {
     } //end findUser function
 
     let validatePasswordInput = (retrievedUserDetails) => {
-        console.log(retrievedUserDetails + 'retrievedUserDetails is called')
-        console.log(req.body.password + 'is called')
+        //console.log(retrievedUserDetails + 'retrievedUserDetails is called')
+        //console.log(req.body.password + 'is called')
         console.log("validatePasswordInput is called")
         return new Promise((resolve, reject) => {
             passwordLib.comparePassword(req.body.password, retrievedUserDetails.password, (err, isMatch) => {
@@ -356,10 +368,10 @@ let loginFunction = (req, res) => {
                             let responseBody = {
                                 authToken: newToken.authToken,
                                 userDetails: tokenDetails.userDetails,
-
                             }
-
+                            userDetails.onlineStatus = "online"
                             resolve(responseBody)
+                            console.log("Token saved")
                         }
                     })
                 } else {
@@ -380,6 +392,7 @@ let loginFunction = (req, res) => {
 
                             }
                             resolve(responseBody)
+                            console.log("Token saved")
                         }
                     })
 
@@ -396,6 +409,7 @@ let loginFunction = (req, res) => {
             let apiResponse = response.generate(false, "Login successfull", 200, resolve)
             res.status(200)
             res.send(apiResponse)
+            console.log(resolve.authToken)
         })
         .catch((err) => {
             console.log(err + 'is called')
@@ -403,25 +417,28 @@ let loginFunction = (req, res) => {
         })
 } //end login function
 
+//start logout function
 let logoutFunction = (req, res) => {
     authModel.findOneAndRemove({
         userId: req.user.userId
-    }, (err, result) => {
+    }, (err, userDetails) => {
         if (err) {
             console.log(err)
-            logger.error(err.message, 'logoutFunction', 10)
+            logger.error(err.message, 'logout Function', 10)
             let apiResponse = response.generate(true, `error occurred at: ${err.message}`, 500, null)
             res.send(apiResponse)
-        } else if (check.isEmpty(result)) {
+        } else if (check.isEmpty(userDetails)) {
             let apiResponse = response.generate(true, 'Logged Out or Invalid UserId', 404, null)
             res.send(apiResponse)
         } else {
             let apiResponse = response.generate(false, 'Logged Out Successfully', 200, null)
             res.send(apiResponse)
+            userDetails.onlineStatus = "offline"
         }
     })
 } //end logout function
 
+//start recoverMail function
 let recoveryMail = (req, res) => {
     let findUser = () => {
         return new Promise((resolve, reject) => {
@@ -520,7 +537,7 @@ let recoveryMail = (req, res) => {
             transporter.sendMail(mailOptions, (err, info) => {
                 if (err) {
                     console.log(err.message)
-                    let apiResposne = response.generate(true, "Failed to send mail link", 500, null)
+                    let apiResposne = response.generate(true, "Failed to send mail link, provided mailId and password are not valid", 500, null)
                     reject(apiResposne)
                 } else {
                     resolve(info)
@@ -545,9 +562,10 @@ let recoveryMail = (req, res) => {
 
 } //end recoveryMail function
 
+//start resetPassword function
 let resetPassword = (req, res) => {
     let findUser = () => {
-        console.log(req.body)
+        //console.log(req.body)
         return new Promise((resolve, reject) => {
             if (req.body.recoveryToken) {
                 userModel.findOne({

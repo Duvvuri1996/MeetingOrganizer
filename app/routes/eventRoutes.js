@@ -10,7 +10,6 @@ module.exports.setRouter = (app) => {
 	app.get(`${baseUrl}/all`, auth.isAuthorized, eventController.getAllEvents)
 
 
-
 	/**
 	 * @api {get} /api/v1/events/all Get all events
 	 * @apiVersion 1.0.0
@@ -27,22 +26,16 @@ module.exports.setRouter = (app) => {
 					{
 						eventId: "string",
                         eventTitle: "string",
-                        userId: "string",
+						userId: "string",
+						userName : "string",
+						creatorId : "string",
+						ceatorName : "string",
                         startDate : "Date",
-                        startTime: {
-                                    hour:"number",
-                                    minute:"number",
-                                    second:"number"
-                                },
                         endDate: : "Date",
-                        endTime: {
-                                    hour:"number",
-                                    minute:"number",
-                                    second:"number"
-                                },
-                        color : boolean,
                         createdOn:  : "Date",
-                        modifiedOn : "Date"
+						modifiedOn : "Date",
+						userEmail : "string",
+						place : "string"
 					}
 	    		]
 	    	}
@@ -81,22 +74,16 @@ module.exports.setRouter = (app) => {
 					{
 						eventId: "string",
                         eventTitle: "string",
-                        userId: "string",
+						userId: "string",
+						userName : "string",
+						creatorId : "string",
+						ceatorName : "string",
                         startDate : "Date",
-                        startTime: {
-                                    hour:"number",
-                                    minute:"number",
-                                    second:"number"
-                                },
                         endDate: : "Date",
-                        endTime: {
-                                    hour:"number",
-                                    minute:"number",
-                                    second:"number"
-                                },
-                        color : boolean,
                         createdOn:  : "Date",
-                        modifiedOn : "Date"
+						modifiedOn : "Date",
+						userEmail : "string",
+						place : "string"
 					}
 	    		]
 	    	}
@@ -136,22 +123,16 @@ module.exports.setRouter = (app) => {
 					{
 						eventId: "string",
                         eventTitle: "string",
-                        userId: "string",
+						userId: "string",
+						userName : "string",
+						creatorId : "string",
+						ceatorName : "string",
                         startDate : "Date",
-                        startTime: {
-                                    hour:"number",
-                                    minute:"number",
-                                    second:"number"
-                                },
                         endDate: : "Date",
-                        endTime: {
-                                    hour:"number",
-                                    minute:"number",
-                                    second:"number"
-                                },
-                        color : boolean,
                         createdOn:  : "Date",
-                        modifiedOn : "Date"
+						modifiedOn : "Date",
+						userEmail : "string",
+						place : "string"
 					}
 	    		]
 	    	}
@@ -236,7 +217,7 @@ module.exports.setRouter = (app) => {
 
 
 	/**
-	 * @api {get} /api/v1/events/create Create an event
+	 * @api {post} /api/v1/events/create Create an event
 	 * @apiVersion 1.0.0
 	 * @apiGroup events
 	 * 
@@ -244,11 +225,12 @@ module.exports.setRouter = (app) => {
 	 * @apiParam {String} eventTitle eventTitle of the event passed as a body parameter
 	 * @apiParam {String} userId userId of the event passed as a body parameter
 	 * @apiParam {Date} startDate startDate of the event passed as a body parameter
-	 * @apiParam {Object} startTime startTime of the event passed as a body parameter
+	 * @apiParam {string} place place of the event passed as a body parameter
 	 * @apiParam {Date} endDate endDate of the event passed as a body parameter
-	 * @apiParam {Object} endTime endTime of the event passed as a body parameter
-	 * @apiParam {String} color color code in hexadecimal form(#000000) as body parameter
-	 * 
+	 * @apiParam {string} userEmail userEmail of the user passed as a body parameter
+	 * @apiParam {String} userName userName of the user as body parameter
+	 * @apiParam {String} creatorId creatorId of the user as body parameter
+	 * @apiParam {String} creatorName creatorName of the user as body parameter
 	 * 
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
@@ -259,22 +241,16 @@ module.exports.setRouter = (app) => {
 					{
 						eventId: "string",
                         eventTitle: "string",
-                        userId: "string",
+						userId: "string",
+						userName : "string",
+						creatorId : "string",
+						ceatorName : "string",
                         startDate : "Date",
-                        startTime: {
-                                    hour:"number",
-                                    minute:"number",
-                                    second:"number"
-                                },
                         endDate: : "Date",
-                        endTime: {
-                                    hour:"number",
-                                    minute:"number",
-                                    second:"number"
-                                },
-                        color : boolean,
                         createdOn:  : "Date",
-                        modifiedOn : "Date"
+						modifiedOn : "Date",
+						userEmail : "string",
+						place : "string"
 					}
 	    		]
 	    	}
@@ -306,7 +282,7 @@ module.exports.setRouter = (app) => {
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
 	    "error": false,
-	    "message": "Deleted successfull.",
+	    "message": "Deleted successfully.",
 	    "status": 200,
 	    "data": null
 		}
@@ -347,22 +323,16 @@ module.exports.setRouter = (app) => {
 					{
 						eventId: "string",
                         eventTitle: "string",
-                        userId: "string",
+						userId: "string",
+						userName : "string",
+						creatorId : "string",
+						ceatorName : "string",
                         startDate : "Date",
-                        startTime: {
-                                    hour:"number",
-                                    minute:"number",
-                                    second:"number"
-                                },
                         endDate: : "Date",
-                        endTime: {
-                                    hour:"number",
-                                    minute:"number",
-                                    second:"number"
-                                },
-                        color : boolean,
                         createdOn:  : "Date",
-                        modifiedOn : "Date"
+						modifiedOn : "Date",
+						userEmail : "string",
+						place : "string"
 					}
 	    		]
 	    	}
@@ -378,6 +348,33 @@ module.exports.setRouter = (app) => {
 	   }
 	 */
 
+	app.post(`${baseUrl}/remindertouser`, auth.isAuthorized, eventController.reminderToUser)
 
+	/**
+	 * @api {post} /api/v1/events/remindertouser To send a reminder mail to user about meeting
+	 * @apiVersion 1.0.0
+	 * @apiGroup events
+	 * 
+	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
+	 * @apiParam {String} userId userId of the user passed as body parameter
+	 * 
+	 * 
+	 *  @apiSuccessExample {json} Success-Response:
+	 *  {
+	    "error": false,
+	    "message": "Reminder Mail sent successfully",
+	    "status": 200,
+	    "data": null
+		}
+	}
+	  @apiErrorExample {json} Error-Response:
+	 *
+	 * {
+	    "error": true,
+	    "message": "Failed to send reminder mail to user",
+	    "status": 404/500,
+	    "data": null
+	   }
+	 */
 
 }

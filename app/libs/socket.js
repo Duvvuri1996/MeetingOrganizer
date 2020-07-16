@@ -13,7 +13,7 @@ let setServer = (server) => {
     let myIo = io.of('/')
     myIo.on('connection', (socket) => {
         //code to verify user to connect to socket
-        socket.emit('verifyUser', "")
+        socket.emit('verify-user', "")
         socket.on('set-user', (authToken) => {
             console.log("set user is called")
             tokenLib.verifyTokenWithoutSecret(authToken, (err, user) => {
@@ -40,7 +40,7 @@ let setServer = (server) => {
                                     console.log(err)
                                 } else {
                                     console.log(`${fullName} is online`)
-                                    socket.broadcast.emit('onLineUserList', result)
+                                    socket.broadcast.emit('online-user-list', result)
                                 }
                             })
                         }
@@ -64,8 +64,8 @@ let setServer = (server) => {
             }
         })
 
-        socket.on('notify-updates', (data) => {
-            console.log("socket notify-updates called")
+        socket.on('event-updates', (data) => {
+            console.log("socket event-updates called")
             console.log(data);
             socket.broadcast.emit(data.userId, data)
         })

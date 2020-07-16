@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { isDate } = require('moment')
 const Schema = mongoose.Schema
 
 
@@ -25,32 +26,20 @@ const Event = new Schema ({
         type : String,
         default : ''
     },
-    startDate : {
-        type : String,
+    userName : {
+        type: String,
         default : ''
     },
-    startTime : {
-        hour:Number,
-        minute:Number,
-        second:{
-            type : Number,
-            default:''
-        }
+    userEmail : {
+        type: String,
+        default: ''
+    },
+    startDate : {
+        type : Date,
+        default : ''
     },
     endDate : {
-        type : String,
-        default : ''
-    },
-    endTime : {
-        hour:Number,
-        minute:Number,
-        second:{
-            type : Number,
-            default:''
-        }
-    },
-    color : {
-        type : String,
+        type : Date,
         default : ''
     },
     createdOn : {
@@ -61,6 +50,10 @@ const Event = new Schema ({
         type : Date,
         default : ""
     },
+    place : {
+        type : 'String',
+        default: ''
+    }
 })
 
 module.exports = mongoose.model('Event', Event)

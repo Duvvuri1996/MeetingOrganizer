@@ -55,7 +55,7 @@ server.on('error', onError)
 server.on('listening', onListening)
 //end server listening code
 
-const socketLib = require("./app/libs/socketLib");
+const socketLib = require("./app/libs/socket");
 const socketServer = socketLib.setServer(server);
 
 /**
