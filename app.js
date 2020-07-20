@@ -12,7 +12,7 @@ const morgan = require('morgan');
 const app = express();
 const {
     port
-} = require('./app/Configuration/appConfig');
+} = require('./app/Configuration/AppConfig');
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
     extended: false
